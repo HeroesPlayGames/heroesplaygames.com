@@ -3,10 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "prepare": "husky install",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:staged": "pretty-quick --staged",
+    "lint:prettier": "prettier ./**/*.{js,jsx,ts,tsx,json,md,css,scss,yml} --write"
+  },
+  "prettier": {
+    "printWidth": 120,
+    "singleQuote": true,
+    "jsxSingleQuote": true,
+    "semi": false
   },
   "dependencies": {
     "next": "11.0.1",
@@ -17,6 +26,9 @@
     "@types/react": "17.0.14",
     "eslint": "7.30.0",
     "eslint-config-next": "11.0.1",
+    "husky": "^7.0.1",
+    "prettier": "^2.3.2",
+    "pretty-quick": "^3.1.1",
     "typescript": "4.3.5"
   }
 }
