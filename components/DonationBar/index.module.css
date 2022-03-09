@@ -1,0 +1,34 @@
+.donation_bar {
+  margin: 0 10px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  width: 600px;
+  height: 100px;
+  z-index: 1000;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.donation_bar_inner {
+  overflow: hidden;
+  height: 100px;
+  background-color: var(--donation-bar-color);
+  border-radius: 10px;
+  z-index: 50;
+  position: relative;
+  transition: width 1s ease-in-out, left 1.5s ease-in-out;
+}
+
+.donation_bar_border {
+  position: relative;
+  top: -150px;
+  left: 0;
+  z-index: 100;
+}
+
+.donation_bar_text {
+  position: relative;
+  left: 50%;
+  top: -75px;
+  z-index: 50;
+}

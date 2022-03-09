@@ -1,0 +1,14 @@
+@font-face {
+  font-family: 'BadaBoom BB';
+  src: url('/fonts/BadaBoomBB.TTF');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+.scene {
+  background-color: rgba(0, 0, 0, 0);
+  margin: 0px auto;
+  padding-left: 20px;
+  overflow: hidden;
+}

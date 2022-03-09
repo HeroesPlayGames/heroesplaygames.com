@@ -1,6 +1,10 @@
 {
-  "name": "extra-life-scenes",
+  "name": "heroesplaygames",
   "version": "0.1.0",
+  "author": {
+    "name": "Marcelo Alves",
+    "url": "https://github.com/marceloalves"
+  },
   "private": true,
   "scripts": {
     "prepare": "husky install",
@@ -11,24 +15,36 @@
     "lint:staged": "pretty-quick --staged",
     "lint:prettier": "prettier ./**/*.{js,jsx,ts,tsx,json,md,css,scss,yml} --write"
   },
-  "prettier": {
-    "printWidth": 120,
-    "singleQuote": true,
-    "jsxSingleQuote": true,
-    "semi": false
-  },
+  "prettier": "@marceloalves/prettier-config",
   "dependencies": {
-    "next": "11.0.1",
+    "@chakra-ui/react": "^1.8.6",
+    "@emotion/react": "^11.8.1",
+    "@emotion/styled": "^11.8.1",
+    "extra-life-ts": "^0.2.3",
+    "framer-motion": "^6.2.8",
+    "ioredis": "^4.28.5",
+    "konva": "^8.3.3",
+    "lodash": "^4.17.21",
+    "next": "12.1.0",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "react-konva": "^17.0.2-5",
+    "react-query": "^3.34.16",
+    "react-twitch-embed-video": "^3.0.2",
+    "sass": "^1.49.9",
+    "use-image": "^1.0.10"
   },
   "devDependencies": {
-    "@types/react": "17.0.14",
-    "eslint": "7.30.0",
-    "eslint-config-next": "11.0.1",
-    "husky": "^7.0.1",
-    "prettier": "^2.3.2",
+    "@marceloalves/prettier-config": "latest",
+    "@types/ioredis": "^4.28.8",
+    "@types/react": "17.0.39",
+    "autoprefixer": "^10.3.6",
+    "eslint": "8.10.0",
+    "eslint-config-next": "12.1.0",
+    "husky": "^7.0.2",
+    "postcss": "^8.4.8",
+    "prettier": "^2.4.1",
     "pretty-quick": "^3.1.1",
-    "typescript": "4.3.5"
+    "typescript": "4.6.2"
   }
 }
