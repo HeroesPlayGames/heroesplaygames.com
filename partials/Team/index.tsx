@@ -2,10 +2,16 @@ import { Box, Grid, Image, Link, Text, VStack } from '@chakra-ui/react'
 import { UserCard } from '@components/UserCard'
 import { organizeMembers } from '@utils/helpers'
 import { TeamParticipant } from 'extra-life-ts'
+import { useEffect, useState } from 'react'
 
 export const Team = ({ members }: { members: TeamParticipant[] }) => {
+  const [highlightedMember, setHighlightedMember] = useState<TeamParticipant>()
   const sortedMembers = organizeMembers(members)
-  const randomMember = members[Math.floor(Math.random() * members.length)]
+
+  // To prevent Next from complaining about html diff server <> client
+  useEffect(() => {
+    setHighlightedMember(members[Math.floor(Math.random() * members.length)])
+  }, [members])
 
   return (
     <Box id="team" width="100%" backgroundColor="#030933" px="10" pt="10">
@@ -14,7 +20,10 @@ export const Team = ({ members }: { members: TeamParticipant[] }) => {
         <Text fontSize="xl" maxW="2xl" mx="auto" align="center">
           Help us reach our goal by donating to someone below. <br />
           If you&apos;re having trouble picking, how about{' '}
-          <Link href={randomMember.links.donate}>{randomMember.displayName.split(' ')[0]}</Link>?
+          <Link id="highlighted-member-link" href={highlightedMember?.links.donate}>
+            {highlightedMember?.displayName.split(' ')[0]}
+          </Link>
+          ?
         </Text>
       </VStack>
       <Grid
