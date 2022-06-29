@@ -1,8 +1,6 @@
 import type { TeamParticipant } from 'extra-life-ts'
+import sortBy from 'lodash/sortBy'
 
-/**
- *  Move captain to front of array and sort rest of members by display name
- * */
 export const organizeMembers = (members: TeamParticipant[]) => {
-  return members.sort((a, b) => (a.isTeamCaptain ? -1 : a.displayName.localeCompare(b.displayName)))
+  return sortBy(members, [(m) => (m.isTeamCaptain ? -1 : 1), 'displayName'])
 }

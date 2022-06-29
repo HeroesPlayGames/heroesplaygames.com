@@ -6,6 +6,7 @@ specifiers:
   '@emotion/styled': ^11.9.3
   '@marceloalves/prettier-config': latest
   '@types/ioredis': ^4.28.10
+  '@types/lodash': ^4.14.182
   '@types/react': 18.0.14
   autoprefixer: ^10.4.7
   caniuse-lite: ^1.0.30001359
@@ -52,6 +53,7 @@ dependencies:
 devDependencies:
   '@marceloalves/prettier-config': 1.0.0
   '@types/ioredis': 4.28.10
+  '@types/lodash': 4.14.182
   '@types/react': 18.0.14
   autoprefixer: 10.4.7_postcss@8.4.14
   eslint: 8.18.0
@@ -1373,7 +1375,6 @@ packages:
   /@types/lodash/4.14.182:
     resolution:
       { integrity: sha512-/THyiqyQAP9AfARo4pF+aCGcyiQ94tX/Is2I7HofNRqoYLgN1PBoOWu2/zTA5zMxzP5EFutMtWtGAFRKUe961Q== }
-    dev: false
 
   /@types/minimatch/3.0.5:
     resolution:

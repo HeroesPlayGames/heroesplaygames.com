@@ -38,6 +38,7 @@
   "devDependencies": {
     "@marceloalves/prettier-config": "latest",
     "@types/ioredis": "^4.28.10",
+    "@types/lodash": "^4.14.182",
     "@types/react": "18.0.14",
     "autoprefixer": "^10.4.7",
     "eslint": "8.18.0",
