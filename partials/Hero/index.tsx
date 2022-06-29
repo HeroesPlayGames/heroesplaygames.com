@@ -12,9 +12,16 @@ export const Hero = ({ team }: Props) => {
   return (
     <Box as="section" bg="#030933">
       <Box mx="auto" pl={{ base: 0, lg: 16 }} pb={{ base: 5, md: 0 }}>
-        <SimpleGrid spacing={4} columns={{ base: 1, md: 2 }} row={{ base: 2, md: 1 }}>
+        <SimpleGrid spacing={2} columns={{ base: 1, md: 2 }} row={{ base: 2, md: 1 }}>
           <Box maxW={{ lg: '520px' }} px={{ base: 6, lg: 0 }}>
-            <Heading as="h1" size="3xl" mt="8" fontWeight="extrabold" letterSpacing="tight" textStyle={'gradient'}>
+            <Heading
+              as="h1"
+              size="3xl"
+              mt={{ base: 0, md: 8 }}
+              fontWeight="extrabold"
+              letterSpacing="tight"
+              textStyle={'gradient'}
+            >
               Play games
               <br />
               Heal kids
