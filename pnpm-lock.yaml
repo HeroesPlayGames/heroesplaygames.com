@@ -8,6 +8,7 @@ specifiers:
   '@types/ioredis': ^4.28.10
   '@types/react': 18.0.14
   autoprefixer: ^10.4.7
+  caniuse-lite: ^1.0.30001359
   eslint: 8.18.0
   eslint-config-next: 12.2.0
   extra-life-ts: ^0.2.3
@@ -33,6 +34,7 @@ dependencies:
   '@chakra-ui/react': 2.2.1_e5akuette336lq4kgxwkblhzve
   '@emotion/react': 11.9.3_luyos4mouogwq6z3wafb3re4ce
   '@emotion/styled': 11.9.3_mtgmvqaicd2yfw2b4v4o2ssbiu
+  caniuse-lite: 1.0.30001359
   extra-life-ts: 0.2.3
   framer-motion: 6.3.16_biqbaboplfbrettd7655fr4n2y
   ioredis: 4.28.5
@@ -1604,7 +1606,7 @@ packages:
       postcss: ^8.1.0
     dependencies:
       browserslist: 4.20.3
-      caniuse-lite: 1.0.30001338
+      caniuse-lite: 1.0.30001359
       fraction.js: 4.2.0
       normalize-range: 0.1.2
       picocolors: 1.0.0
@@ -1701,11 +1703,6 @@ packages:
     resolution:
       { integrity: sha512-P8BjAsXvZS+VIDUI11hHCQEv74YT67YUi5JJFNWIqL235sBmjX4+qx9Muvls5ivyNENctx46xQLQ3aTuE7ssaQ== }
     engines: { node: '>=6' }
-
-  /caniuse-lite/1.0.30001338:
-    resolution:
-      { integrity: sha512-1gLHWyfVoRDsHieO+CaeYe7jSo/MT7D7lhaXUiwwbuR5BwQxORs0f1tAwUSQr3YbxRXJvxHM/PA5FfPQRnsPeQ== }
-    dev: true
 
   /caniuse-lite/1.0.30001359:
     resolution:
