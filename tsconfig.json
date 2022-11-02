@@ -15,12 +15,12 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "@components/*": ["components/*"],
-      "@lib/*": ["lib/*"],
-      "@pages/*": ["pages/*"],
-      "@partials/*": ["partials/*"],
-      "@utils/*": ["utils/*"],
-      "@hooks": ["hooks/index.tsx"]
+      "@components/*": ["src/components/*"],
+      "@lib/*": ["src/lib/*"],
+      "@pages/*": ["src/pages/*"],
+      "@partials/*": ["src/partials/*"],
+      "@utils/*": ["src/utils/*"],
+      "@hooks": ["src/hooks/index.tsx"]
     },
     "incremental": true
   },
