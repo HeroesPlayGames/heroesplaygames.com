@@ -1,20 +1,8 @@
-import {
-  Avatar,
-  Box,
-  Button,
-  Center,
-  Heading,
-  HStack,
-  Image,
-  Stack,
-  Text,
-  Tooltip,
-  useColorModeValue,
-  VStack,
-} from '@chakra-ui/react'
 import type { TeamParticipant } from 'extra-life-ts'
 import { getParticipantBadges } from 'extra-life-ts'
 import { useQuery } from 'react-query'
+import Image from 'next/image'
+import Link from 'next/link'
 
 export const UserCard = ({
   displayName,
@@ -34,43 +22,39 @@ export const UserCard = ({
   )
 
   return (
-    <Center py={6}>
-      <VStack
-        w="full"
-        h="full"
-        bg={useColorModeValue('#050E52', 'gray.900')}
-        boxShadow="2xl"
-        rounded="lg"
-        p={6}
-        textAlign="center"
-        justifyContent="space-between"
-      >
-        <Box h="full">
-          <Avatar size="xl" src={avatarUrl} name={displayName} pos="relative" />
-          <Heading fontSize="2xl" fontFamily="body" color="gray.100">
-            {displayName}
-          </Heading>
-          {(isTeamCaptain || isTeamCoCaptain) && (
-            <Text fontWeight="bold" fontSize="xl" color="gray.100" textStyle="gradient">
-              {isTeamCaptain ? 'Captain' : 'Co-Captain'}
-            </Text>
-          )}
-        </Box>
+    <div className="flex flex-col items-center justify-between gap-2 rounded-lg bg-[#050E52] p-6 shadow-2xl">
+      <Image
+        alt={displayName}
+        src={avatarUrl}
+        width={96}
+        height={96}
+        className="rounded-full border-4 border-[#030933]"
+      />
+      <p className="text-2xl font-bold">{displayName}</p>
+      {(isTeamCaptain || isTeamCoCaptain) && (
+        <p className="text-bold inline-block bg-gradient-to-r from-white via-brand to-white bg-clip-text text-xl font-bold text-transparent">
+          {isTeamCaptain ? 'Captain' : 'Co-Captain'}
+        </p>
+      )}
+
+      <div className="mt-5 flex flex-col items-center gap-5">
         {!!data?.length && (
-          <HStack justifyContent="center" spacing={2} w="full" flexWrap="wrap">
+          <div className="flex w-full flex-nowrap justify-center gap-2">
             {data?.map(({ badgeImageURL, description, badgeCode }) => (
-              <Tooltip key={badgeCode} label={description} placement="top">
-                <Image src={badgeImageURL} alt={description} boxSize={10} />
-              </Tooltip>
+              <div key={badgeCode} className="tooltip" data-tip={description}>
+                <Image src={badgeImageURL} alt={description} width={40} height={40} />
+              </div>
             ))}
-          </HStack>
+          </div>
         )}
-        <Stack mt={8} direction="row" spacing={4} width={{ base: '75%', xl: '50%' }} p={3}>
-          <Button flex={1} fontSize="sm" onClick={() => (window.location.href = links.donate)}>
-            Donate
-          </Button>
-        </Stack>
-      </VStack>
-    </Center>
+        <Link
+          className="w-fit rounded-lg bg-orange-600 px-10 py-2 font-semibold hover:bg-orange-500"
+          href={links.donate}
+          scroll={false}
+        >
+          Donate
+        </Link>
+      </div>
+    </div>
   )
 }

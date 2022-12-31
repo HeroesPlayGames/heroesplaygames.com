@@ -48,11 +48,9 @@ export default function Home({ team, members }: { team: ELTeam; members: TeamPar
         <meta property="twitter:image" content="/ogimage.jpg" />
       </Head>
 
-      <main>
-        {team.streamIsLive ? <Player streamingChannel={team.streamingChannel} /> : <Hero team={team} />}
-        <StatBar team={team} />
-        <Team members={members} />
-      </main>
+      {team.streamIsLive ? <Player streamingChannel={team.streamingChannel} /> : <Hero team={team} />}
+      <StatBar team={team} />
+      <Team members={members} />
     </>
   )
 }

@@ -1,5 +1,4 @@
-import { AspectRatio, Button, Center, Flex } from '@chakra-ui/react'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 import { lazy, Suspense } from 'react'
 
 const Player = ({ streamingChannel }: { streamingChannel: string }) => {
@@ -12,11 +11,11 @@ const Player = ({ streamingChannel }: { streamingChannel: string }) => {
 
   return (
     <Suspense fallback={<p>loading...</p>}>
-      <Flex flexDirection="column" p="10" backgroundImage="/background.png" backgroundSize="cover" width="100%">
-        <Flex justifyContent="center" pb="2">
-          <Image alt="Heroes Play Games" src="/logo.png" width={227} height={132} layout="fixed" />
-        </Flex>
-        <AspectRatio ratio={16 / 9}>
+      <div className="background-[url(/background.png)] bg-cover p-10 text-center">
+        <div className="flex justify-center pb-2">
+          <Image alt="Heroes Play Games" src="/logo.png" width={227} height={132} />
+        </div>
+        <div className="aspect-video">
           <ReactTwitchEmbedVideo
             channel={streamingChannel}
             autoplay
@@ -25,18 +24,16 @@ const Player = ({ streamingChannel }: { streamingChannel: string }) => {
             width="100%"
             // muted
           />
-        </AspectRatio>
-
-        <Center>
-          <Button
-            my={5}
-            maxW="max-content"
-            onClick={() => (window.location.href = `https://twitch.tv/${streamingChannel}`)}
+        </div>
+        <div className="p-10">
+          <a
+            className="w-fit rounded-lg bg-orange-600 px-10 py-2 font-semibold hover:bg-orange-500"
+            href={`https://twitch.tv/${streamingChannel}`}
           >
             Watch On Twitch.tv
-          </Button>
-        </Center>
-      </Flex>
+          </a>
+        </div>
+      </div>
     </Suspense>
   )
 }

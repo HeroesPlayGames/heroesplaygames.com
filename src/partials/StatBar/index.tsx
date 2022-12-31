@@ -1,28 +1,61 @@
-import { Box, Stack, StackDivider, useBreakpoint } from '@chakra-ui/react'
 import { Stat } from '@components/Stat'
 import { currencyFormat } from '@utils/currency'
+import clsx from 'clsx'
 import type { Team } from 'extra-life-ts'
+import { useState } from 'react'
 
 interface Props {
   team: Team
 }
 
+const previousYears = {
+  '2021': {
+    sumDonations: 5431,
+    fundraisingGoal: 5000,
+    numDonations: 45,
+  },
+} as Record<string, { sumDonations: number; fundraisingGoal: number; numDonations: number }>
+
+const currentYear = new Date().getFullYear()
+
 export const StatBar = ({ team }: Props) => {
-  const breakpoint = useBreakpoint()
+  const [selected, setSelected] = useState(() => String(currentYear))
+
+  const selectedYear =
+    selected === String(currentYear)
+      ? {
+          sumDonations: team.sumDonations,
+          fundraisingGoal: team.fundraisingGoal,
+          numDonations: team.numDonations,
+        }
+      : previousYears[selected]
+
+  if (!selectedYear) return null
 
   return (
-    <Box as="section" p={6}>
-      <Box maxW={{ base: 'xl', md: '7xl' }} mx="auto" px={{ md: 8 }}>
-        <Box bg="#050E52" p={10} rounded="xl" shadow="base">
-          <Stack spacing={8} justify="space-between" direction="row" divider={<StackDivider />}>
-            {!['base', 'sm'].includes(breakpoint ?? 'base') && (
-              <Stat label="Total Donations" value={team.numDonations} />
-            )}
-            <Stat label="Amount Raised" value={currencyFormat(team.sumDonations)} />
-            <Stat label="2022 Goal" value={currencyFormat(team.fundraisingGoal)} />
-          </Stack>
-        </Box>
-      </Box>
-    </Box>
+    <div className="mt-5 p-0 sm:mt-0 sm:p-10">
+      <div className="flex flex-col gap-1 bg-[#050E52] py-5 sm:rounded-xl sm:px-0">
+        <div className="btn-group self-center">
+          {[...Object.keys(previousYears), String(currentYear)].map((year) => (
+            <button
+              key={year}
+              className={clsx('btn', {
+                'btn-active !bg-orange-600 !text-white': year === selected,
+                '!bg-[#030933]': year !== selected,
+              })}
+              onClick={() => setSelected(year)}
+              type="button"
+            >
+              {year}
+            </button>
+          ))}
+        </div>
+        <dl className="flex flex-col py-5 px-10 sm:flex-row">
+          <Stat label="Total Donations" value={selectedYear.numDonations} />
+          <Stat label="Amount Raised" value={currencyFormat(selectedYear.sumDonations)} />
+          <Stat label="2022 Goal" value={currencyFormat(selectedYear.fundraisingGoal)} />
+        </dl>
+      </div>
+    </div>
   )
 }

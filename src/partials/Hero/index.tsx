@@ -1,58 +1,49 @@
-import { Box, Button, Flex, Heading, Img, Link, SimpleGrid, Stack, Text } from '@chakra-ui/react'
+import clsx from 'clsx'
 import type { Team } from 'extra-life-ts'
-import { useRouter } from 'next/router'
+import Link from 'next/link'
 
 interface Props {
   team: Team
 }
 
 export const Hero = ({ team }: Props) => {
-  const router = useRouter()
-
   return (
-    <Box as="section" bg="#030933">
-      <Box mx="auto" pl={{ base: 0, lg: 16 }} pb={{ base: 5, md: 0 }}>
-        <SimpleGrid spacing={2} columns={{ base: 1, md: 2 }} row={{ base: 2, md: 1 }}>
-          <Box maxW={{ lg: '520px' }} px={{ base: 6, lg: 0 }}>
-            <Heading
-              as="h1"
-              size="3xl"
-              mt={{ base: 0, md: 8 }}
-              fontWeight="extrabold"
-              letterSpacing="tight"
-              textStyle="gradient"
-            >
-              Play games
-              <br />
-              Heal kids
-            </Heading>
-            <Text color="gray.100" mt="4" fontSize="lg" fontWeight="medium">
-              Extra Life, a fundraising program of Children’s Miracle Network Hospitals&reg;, leverages the passion of
-              the gaming community to rally support for our 170 member hospitals. Participants fundraise year-round and
-              pledge to game for 24 hours with one goal: to save and improve the lives of sick and injured kids.
-            </Text>
-            <Stack direction={{ base: 'column', md: 'row' }} spacing="4" mt="8">
-              <Button onClick={() => router.push('#team')} size="lg" minW="210px" height="14" px="8">
-                Donate
-              </Button>
-            </Stack>
-            <Text mt="8" color="gray.100">
-              Want to help us raise money? <Link href={team.links.page}>Join the team!</Link>
-            </Text>
-          </Box>
-          <Flex
-            gridRow={{ base: 1, sm: undefined }}
-            gridColumn={{ md: 2 }}
-            placeItems="center"
-            p={{ base: 5, md: 10, xl: 20 }}
-            backgroundImage="/background.png"
-            backgroundPosition="center center"
-            backgroundSize="cover"
-          >
-            <Img w="full" objectFit="cover" src="/logo.png" alt="Heroes Play Games Logo" />
-          </Flex>
-        </SimpleGrid>
-      </Box>
-    </Box>
+    <div className="flex flex-col-reverse md:flex-row">
+      <div className="flex flex-1 flex-col gap-5 p-5 pb-4 sm:p-10">
+        <h1
+          className={clsx(
+            'inline-block min-w-max',
+            'bg-gradient-to-r from-white via-brand to-white',
+            'bg-clip-text text-6xl font-black text-transparent',
+          )}
+        >
+          Play games
+          <br />
+          Heal kids
+        </h1>
+        <p className="text-lg font-medium">
+          Extra Life, a fundraising program of Children&apos;s Miracle Network Hospitals&reg;, leverages the passion of
+          the gaming community to rally support for our 170 member hospitals. Participants fundraise year-round and
+          pledge to game for 24 hours with one goal: to save and improve the lives of sick and injured kids.
+        </p>
+        <Link
+          className="w-fit rounded-lg bg-orange-600 px-10 py-2 font-semibold hover:bg-orange-500"
+          href="#team"
+          scroll={false}
+        >
+          Donate
+        </Link>
+
+        <p>
+          Want to help us raise money?{' '}
+          <a href={team.links.page} className="gradient-link">
+            Join the team!
+          </a>
+        </p>
+      </div>
+      <div className="flex flex-1 justify-center bg-[url(/background.png)] bg-cover bg-center p-12 align-middle">
+        <img className="w-full object-contain" src="/logo.png" alt="Heroes Play Games Logo" />
+      </div>
+    </div>
   )
 }

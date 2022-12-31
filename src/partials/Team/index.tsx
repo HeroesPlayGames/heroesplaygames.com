@@ -1,8 +1,9 @@
-import { Box, Grid, Image, Link, Text, VStack } from '@chakra-ui/react'
 import { UserCard } from '@components/UserCard'
 import { organizeMembers } from '@utils/helpers'
 import { TeamParticipant } from 'extra-life-ts'
 import { useEffect, useState } from 'react'
+import Image from 'next/image'
+import theHeroesImage from '../../images/the-heroes.png'
 
 export const Team = ({ members }: { members: TeamParticipant[] }) => {
   const [highlightedMember, setHighlightedMember] = useState<TeamParticipant>()
@@ -14,28 +15,24 @@ export const Team = ({ members }: { members: TeamParticipant[] }) => {
   }, [members])
 
   return (
-    <Box id="team" width="100%" backgroundColor="#030933" px="10" pt="10">
-      <VStack justifyContent="center" pb={10}>
-        <Image src="/the-heroes.png" alt="The Heroes" height="200" pb={5} />
-        <Text fontSize="xl" maxW="2xl" mx="auto" align="center">
+    <div id="team" className="w-full p-5 sm:p-10">
+      <div className="flex flex-col items-center gap-5">
+        <Image src={theHeroesImage} alt="The Heroes" width={400} height={153} placeholder="blur" />
+        <p className="mx-auto text-center text-xl">
           Help us reach our goal by donating to someone below. <br />
           If you&apos;re having trouble picking, how about{' '}
-          <Link id="highlighted-member-link" href={highlightedMember?.links.donate}>
+          <a className="gradient-link" href={highlightedMember?.links.donate}>
             {highlightedMember?.displayName.split(' ')[0]}
-          </Link>
+          </a>
           ?
-        </Text>
-      </VStack>
-      <Grid
-        gridTemplateColumns={{ base: '1fr', md: 'repeat(2, 1fr)', lg: 'repeat(3, 1fr)' }}
-        gridAutoRows="1fr"
-        gridAutoFlow="row"
-        gridColumnGap="50px"
-      >
+        </p>
+      </div>
+
+      <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
         {sortedMembers.map((member) => {
           return <UserCard key={member.participantID} {...member} />
         })}
-      </Grid>
-    </Box>
+      </div>
+    </div>
   )
 }
