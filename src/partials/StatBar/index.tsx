@@ -14,6 +14,11 @@ const previousYears = {
     fundraisingGoal: 5000,
     numDonations: 45,
   },
+  '2022': {
+    sumDonations: 10585,
+    fundraisingGoal: 10000,
+    numDonations: 73,
+  },
 } as Record<string, { sumDonations: number; fundraisingGoal: number; numDonations: number }>
 
 const currentYear = new Date().getFullYear()
@@ -53,7 +58,7 @@ export const StatBar = ({ team }: Props) => {
         <dl className="flex flex-col py-5 px-10 sm:flex-row">
           <Stat label="Total Donations" value={selectedYear.numDonations} />
           <Stat label="Amount Raised" value={currencyFormat(selectedYear.sumDonations)} />
-          <Stat label="2022 Goal" value={currencyFormat(selectedYear.fundraisingGoal)} />
+          <Stat label={`${selected} Goal`} value={currencyFormat(selectedYear.fundraisingGoal)} />
         </dl>
       </div>
     </div>

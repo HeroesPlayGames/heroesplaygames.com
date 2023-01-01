@@ -1,4 +1,4 @@
-export const EXTRA_LIFE_TEAM_ID = 60010
+export const EXTRA_LIFE_TEAM_ID = 63325
 
 export const REDIS_KEYS = {
   LATEST_DONATION: 'donations:latest',
