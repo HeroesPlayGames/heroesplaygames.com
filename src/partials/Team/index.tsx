@@ -21,7 +21,7 @@ export const Team = ({ members }: { members: TeamParticipant[] }) => {
         <p className="mx-auto text-center text-xl">
           Help us reach our goal by donating to someone below. <br />
           If you&apos;re having trouble picking, how about{' '}
-          <a className="gradient-link" href={highlightedMember?.links.donate}>
+          <a className="gradient-link font-bold" href={highlightedMember?.links.donate}>
             {highlightedMember?.displayName.split(' ')[0]}
           </a>
           ?

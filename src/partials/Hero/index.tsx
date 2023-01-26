@@ -36,7 +36,7 @@ export const Hero = ({ team }: Props) => {
 
         <p>
           Want to help us raise money?{' '}
-          <a href={team.links.page} className="gradient-link">
+          <a href={team.links.page} className="gradient-link font-bold">
             Join the team!
           </a>
         </p>
