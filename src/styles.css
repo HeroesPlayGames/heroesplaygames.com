@@ -1,15 +1,92 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+@plugin "daisyui";
 
-body {
-  @apply m-0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@theme {
+  --font-sans:
+    'Inter', 'Nunito Sans', ui-sans-serif, system-ui, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --color-brand-start: hsl(327deg 62% 56%);
+  --color-brand-end: hsl(229deg 64% 50%);
+  --color-brand:
+    hsl(327deg 62% 56%) 0%, hsl(276deg 57% 57%) 8%, hsl(225deg 52% 57%) 17%,
+    hsl(174deg 47% 57%) 25%, hsl(120deg 57% 56%) 33%, hsl(66deg 68% 55%) 42%,
+    hsl(12deg 78% 54%) 50%, hsl(37deg 68% 53%) 58%, hsl(62deg 58% 52%) 67%,
+    hsl(87deg 49% 51%) 75%, hsl(134deg 54% 51%) 83%, hsl(181deg 58% 50%) 92%,
+    hsl(229deg 64% 50%) 100%;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+/* 
+  DaisyUI v5 Theme Configuration
+  We define the variables for our custom theme.
+  Applying to :root makes it the default.
+*/
+:root {
+  --primary: #050e52;
+  --primary-content: #ffffff;
+  --secondary: #d926a9;
+  --secondary-content: #ffffff;
+  --accent: #1fb2a6;
+  --accent-content: #ffffff;
+  --neutral: #191d24;
+  --neutral-content: #ffffff;
+  --base-100: #2a303c;
+  --base-content: #ffffff;
+  --info: #3abff8;
+  --success: #36d399;
+  --warning: #fbbd23;
+  --error: #f87272;
+
+  --rounded-box: 1rem;
+  --rounded-btn: 0.5rem;
+  --rounded-badge: 1.9rem;
+}
+
+a.gradient-link {
+  background-image: linear-gradient(
+    130deg,
+    hsl(327deg 62% 56%) 0%,
+    hsl(276deg 57% 57%) 8%,
+    hsl(225deg 52% 57%) 17%,
+    hsl(174deg 47% 57%) 25%,
+    hsl(120deg 57% 56%) 33%,
+    hsl(66deg 68% 55%) 42%,
+    hsl(12deg 78% 54%) 50%,
+    hsl(37deg 68% 53%) 58%,
+    hsl(62deg 58% 52%) 67%,
+    hsl(87deg 49% 51%) 75%,
+    hsl(134deg 54% 51%) 83%,
+    hsl(181deg 58% 50%) 92%,
+    hsl(229deg 64% 50%) 100%
+  );
+  background-size:
+    100% 2px,
+    100% 2px;
+  background-position:
+    0 bottom,
+    0 bottom;
+  background-repeat: no-repeat;
+  transition: background-size 0.5s ease-in;
+}
+
+a.gradient-link:hover {
+  background-size: 200% 2px;
+}
+
+.bg-brand-gradient {
+  background-image: linear-gradient(
+    to right,
+    hsl(327deg 62% 56%) 0%,
+    hsl(276deg 57% 57%) 8%,
+    hsl(225deg 52% 57%) 17%,
+    hsl(174deg 47% 57%) 25%,
+    hsl(120deg 57% 56%) 33%,
+    hsl(66deg 68% 55%) 42%,
+    hsl(12deg 78% 54%) 50%,
+    hsl(37deg 68% 53%) 58%,
+    hsl(62deg 58% 52%) 67%,
+    hsl(87deg 49% 51%) 75%,
+    hsl(134deg 54% 51%) 83%,
+    hsl(181deg 58% 50%) 92%,
+    hsl(229deg 64% 50%) 100%
+  );
 }
