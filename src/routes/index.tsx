@@ -1,10 +1,9 @@
 import { createFileRoute } from '@tanstack/react-router'
+import { getTeamData, getTopDonations } from '../api'
 import { Hero } from '../components/Hero'
+import { Leaderboard } from '../components/Leaderboard'
 import { StatBar } from '../components/StatBar'
 import { Team } from '../components/Team'
-import { Leaderboard } from '../components/Leaderboard'
-import Player from '../components/Player'
-import { getTeamData, getTopDonations } from '../api'
 
 export const Route = createFileRoute('/')({
   component: Home,
@@ -52,11 +51,7 @@ function Home() {
   return (
     <div className="bg-[#030933]">
       <div className="font-sans container mx-auto min-h-screen">
-        {team.streamIsLive ? (
-          <Player streamingChannel={team.streamingChannel} />
-        ) : (
-          <Hero team={team} />
-        )}
+        <Hero team={team} />
         <StatBar team={team} />
         <Team members={members} />
         <Leaderboard donations={topDonations} />

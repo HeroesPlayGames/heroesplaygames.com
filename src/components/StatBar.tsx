@@ -1,8 +1,8 @@
-import { Stat } from './Stat'
-import { currencyFormat } from '../utils/currency'
 import clsx from 'clsx'
-import type { Team } from 'extra-life-ts'
 import { useState } from 'react'
+import { currencyFormat } from '../utils/currency'
+import { Stat } from './Stat'
+import type { Team } from 'extra-life-ts'
 
 interface Props {
   team: Team
@@ -52,8 +52,6 @@ export const StatBar = ({ team }: Props) => {
           numDonations: team.numDonations,
         }
       : previousYears[selected]
-
-  if (!selectedYear) return null
 
   return (
     <div className="mt-5 p-0 sm:mt-0 sm:p-10">

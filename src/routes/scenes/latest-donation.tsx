@@ -21,7 +21,5 @@ function LatestDonationScene() {
 
   if (!data.amount) return null
 
-  return (
-    <FitText text={`${data?.displayName ?? 'Anonymous'}-$${data?.amount}`} />
-  )
+  return <FitText text={`${data.displayName ?? 'Anonymous'}-$${data.amount}`} />
 }

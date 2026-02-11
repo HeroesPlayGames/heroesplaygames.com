@@ -19,7 +19,7 @@ export const Route = createFileRoute('/scenes/top-donation')({
 function TopDonationScene() {
   const { data } = useSuspenseQuery(query)
 
-  if (!data || !data.amount) return null
+  if (!data.amount) return null
 
   return <FitText text={`${data.displayName ?? 'Anonymous'}-$${data.amount}`} />
 }

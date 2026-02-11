@@ -21,9 +21,11 @@ export const Hero = ({ team }: Props) => {
           Heal kids
         </h1>
         <p className="text-lg font-medium">
-          Extra Life, a fundraising program of Children&apos;s Miracle Network Hospitals&reg;, leverages the passion of
-          the gaming community to rally support for our 170 member hospitals. Participants fundraise year-round and
-          pledge to game for 24 hours with one goal: to save and improve the lives of sick and injured kids.
+          Extra Life, a fundraising program of Children&apos;s Miracle Network
+          Hospitals&reg;, leverages the passion of the gaming community to rally
+          support for our 170 member hospitals. Participants fundraise
+          year-round and pledge to game for 24 hours with one goal: to save and
+          improve the lives of sick and injured kids.
         </p>
         <a
           className="w-fit rounded-lg bg-orange-600 px-10 py-2 font-semibold hover:bg-orange-500"
@@ -40,7 +42,11 @@ export const Hero = ({ team }: Props) => {
         </p>
       </div>
       <div className="flex flex-1 justify-center bg-[url(/background.png)] bg-cover bg-center p-12 align-middle">
-        <img className="w-full object-contain" src="/logo.png" alt="Heroes Play Games Logo" />
+        <img
+          className="w-full object-contain"
+          src="/logo.png"
+          alt="Heroes Play Games Logo"
+        />
       </div>
     </div>
   )

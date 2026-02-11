@@ -1,7 +1,7 @@
-import type { TeamParticipant } from 'extra-life-ts'
 import { getParticipantBadges } from 'extra-life-ts'
 import { useQuery } from '@tanstack/react-query'
 import { Link } from '@tanstack/react-router'
+import type { TeamParticipant } from 'extra-life-ts'
 
 export const UserCard = ({
   displayName,
@@ -12,9 +12,10 @@ export const UserCard = ({
   isTeamCoCaptain,
 }: TeamParticipant) => {
   const avatarUrl = avatarImageURL.replace(/https:https:/i, 'https:')
-  const { data } = useQuery({
+  const { data: badges } = useQuery({
     queryKey: ['PlayerBadges', { participantID }],
-    queryFn: () => getParticipantBadges(participantID, { orderBy: 'unlockedDateUTC ASC' }),
+    queryFn: () =>
+      getParticipantBadges(participantID, { orderBy: 'unlockedDateUTC ASC' }),
     select: ({ data }) => data,
   })
 
@@ -35,11 +36,16 @@ export const UserCard = ({
       )}
 
       <div className="mt-5 flex flex-col items-center gap-5">
-        {!!data?.length && (
+        {!!badges?.length && (
           <div className="flex w-full flex-nowrap justify-center gap-2">
-            {data?.map(({ badgeImageURL, description, badgeCode }) => (
+            {badges.map(({ badgeImageURL, description, badgeCode }) => (
               <div key={badgeCode} className="tooltip" data-tip={description}>
-                <img src={badgeImageURL} alt={description} width={40} height={40} />
+                <img
+                  src={badgeImageURL}
+                  alt={description}
+                  width={40}
+                  height={40}
+                />
               </div>
             ))}
           </div>

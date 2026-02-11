@@ -1,10 +1,10 @@
-import { UserCard } from './UserCard'
-import { organizeMembers } from '../utils/helpers'
-import { TeamParticipant } from 'extra-life-ts'
 import { useEffect, useState } from 'react'
+import { organizeMembers } from '../utils/helpers'
 import theHeroesImage from '../images/the-heroes.png'
+import { UserCard } from './UserCard'
+import type { TeamParticipant } from 'extra-life-ts'
 
-export const Team = ({ members }: { members: TeamParticipant[] }) => {
+export const Team = ({ members }: { members: Array<TeamParticipant> }) => {
   const [highlightedMember, setHighlightedMember] = useState<TeamParticipant>()
   const sortedMembers = organizeMembers(members)
 
@@ -20,7 +20,10 @@ export const Team = ({ members }: { members: TeamParticipant[] }) => {
         <p className="mx-auto text-center text-xl">
           Help us reach our goal by donating to someone below. <br />
           If you&apos;re having trouble picking, how about{' '}
-          <a className="gradient-link font-bold" href={highlightedMember?.links.donate}>
+          <a
+            className="gradient-link font-bold"
+            href={highlightedMember?.links.donate}
+          >
             {highlightedMember?.displayName.split(' ')[0]}
           </a>
           ?
@@ -28,7 +31,7 @@ export const Team = ({ members }: { members: TeamParticipant[] }) => {
       </div>
 
       <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
-        {sortedMembers.map((member) => {
+        {sortedMembers.map((member: TeamParticipant) => {
           return <UserCard key={member.participantID} {...member} />
         })}
       </div>
