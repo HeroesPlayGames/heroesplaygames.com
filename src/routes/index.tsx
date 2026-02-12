@@ -25,6 +25,32 @@ export const Route = createFileRoute('/')({
         content:
           "We're on a mission to play games to help change kids' health. We've each chosen our local Children's Miracle Network Hospital.",
       },
+      {
+        rel: 'icon',
+        type: 'image/x-icon',
+        content: '/favicon.ico',
+      },
+      {
+        rel: 'apple-touch-icon',
+        sizes: '180x180',
+        href: '/apple-touch-icon.png',
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '32x32',
+        href: '/favicon-32x32.png',
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '16x16',
+        href: '/favicon-16x16.png',
+      },
+      {
+        rel: 'manifest',
+        href: '/site.webmanifest',
+      },
       { property: 'og:type', content: 'website' },
       { property: 'og:url', content: 'https://heroesplaygames.com' },
       { property: 'og:title', content: 'Heroes Play Games' },
@@ -33,7 +59,7 @@ export const Route = createFileRoute('/')({
         content:
           "We're on a mission to play games to help change kids' health. We've each chosen our local Children's Miracle Network Hospital.",
       },
-      { property: 'og:image', content: '/ogimage.jpg' },
+      { property: 'og:image', content: '/logo.png' },
       { property: 'twitter:card', content: 'summary_large_image' },
       { property: 'twitter:url', content: 'https://heroesplaygames.com/' },
       { property: 'twitter:title', content: 'Heroes Play Games' },
@@ -42,7 +68,7 @@ export const Route = createFileRoute('/')({
         content:
           "We're on a mission to play games to help change kids' health. We've each chosen our local Children's Miracle Network Hospital.",
       },
-      { property: 'twitter:image', content: '/ogimage.jpg' },
+      { property: 'twitter:image', content: '/logo.png' },
     ],
   }),
 })
