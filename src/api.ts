@@ -1,5 +1,5 @@
 import { getTeam, getTeamDonations, getTeamParticipants } from 'extra-life-ts'
-import { EXTRA_LIFE_TEAM_ID } from './utils/constants'
+import { EXTRA_LIFE_TEAM_ID } from './lib/constants'
 import type { Donation, Team, TeamParticipant } from 'extra-life-ts'
 
 interface TeamDataResponse {

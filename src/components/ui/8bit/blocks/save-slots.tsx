@@ -7,7 +7,6 @@ import { cva } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 
 import { Badge } from '@/components/ui/8bit/badge'
-import { Button } from '@/components/ui/8bit/button'
 import {
   Card,
   CardContent,
@@ -39,14 +38,12 @@ export interface SaveSlotsProps extends React.ComponentProps<'div'> {
 }
 
 const slotItemVariants = cva(
-  'group relative flex gap-2 sm:gap-4 p-2 sm:p-4 transition-all duration-200 cursor-pointer border-2',
+  'group relative flex gap-2 sm:gap-4 p-2 sm:p-4 transition-all duration-200 border-2',
   {
     variants: {
       state: {
-        empty:
-          'border-dashed border-muted-foreground/30 hover:border-primary/50 hover:bg-accent/30',
-        filled:
-          'border-border hover:border-primary hover:bg-accent/50 bg-muted/30',
+        empty: 'border-dashed border-muted-foreground/30',
+        filled: 'border-border  bg-muted/30',
       },
     },
     defaultVariants: {
@@ -56,7 +53,7 @@ const slotItemVariants = cva(
 )
 
 const previewFrameVariants = cva(
-  'flex items-center justify-center border-4 overflow-hidden flex-shrink-0',
+  'flex items-center justify-center border-4 overflow-hidden shrink-0',
   {
     variants: {
       state: {
@@ -216,14 +213,6 @@ function SlotItem({
           >
             {slot.isEmpty ? `EMPTY ${slotNumber}` : displayName}
           </h3>
-          {!slot.isEmpty && (
-            <Badge
-              className="text-[7px] sm:text-[9px] retro shrink-0 hidden sm:inline-flex"
-              variant="secondary"
-            >
-              SAVED
-            </Badge>
-          )}
         </div>
 
         {!slot.isEmpty && (
@@ -247,23 +236,6 @@ function SlotItem({
           </p>
         )}
       </div>
-
-      {!slot.isEmpty && (
-        <div className="flex items-center opacity-0 group-hover:opacity-100 transition-opacity">
-          <Button
-            variant="ghost"
-            size="sm"
-            className="text-xs h-auto py-1 px-2"
-            onClick={(e) => {
-              e.stopPropagation()
-              onClick?.(slot)
-            }}
-            aria-label={`Load save from slot ${slotNumber}`}
-          >
-            LOAD
-          </Button>
-        </div>
-      )}
     </div>
   )
 }

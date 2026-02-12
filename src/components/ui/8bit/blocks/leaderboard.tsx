@@ -241,5 +241,3 @@ export function Leaderboard({
     </Card>
   )
 }
-
-export default Leaderboard

@@ -3,7 +3,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { z } from 'zod'
 import { getTeamData } from '../../api'
 import { FitText } from '../../components/FitText'
-import { currencyFormat } from '../../utils/currency'
+import { currencyFormat } from '@/lib/currency'
 
 const searchSchema = z.object({
   participantID: z.string().optional(),

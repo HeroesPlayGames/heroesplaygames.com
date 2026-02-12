@@ -9,8 +9,9 @@
     "test": "vitest run",
     "lint": "eslint",
     "format": "prettier",
-    "check": "prettier --write . && eslint --fix",
-    "deploy": "wrangler deploy"
+    "fix": "prettier --write . && eslint --fix",
+    "deploy": "wrangler deploy",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@cloudflare/vite-plugin": "^1.22.1",
@@ -30,6 +31,7 @@
     "@tanstack/router-plugin": "^1.157.17",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "eslint": "^9.39.2",
     "extra-life-ts": "^0.5.0",
     "lucide-react": "^0.563.0",
     "radix-ui": "^1.4.3",

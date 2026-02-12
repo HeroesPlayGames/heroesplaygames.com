@@ -1,12 +1,13 @@
-import clsx from 'clsx'
-import { useState } from 'react'
-import { currencyFormat } from '../utils/currency'
-import { Stat } from './Stat'
+import SaveSlots from './ui/8bit/blocks/save-slots'
 import type { Team } from 'extra-life-ts'
-
-interface Props {
-  team: Team
-}
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/8bit/card'
+import { Badge } from '@/components/ui/8bit/badge'
+import { currencyFormat } from '@/lib/currency'
 
 const previousYears = {
   '2021': {
@@ -39,50 +40,67 @@ const previousYears = {
   { sumDonations: number; fundraisingGoal: number; numDonations: number }
 >
 
-const currentYear = new Date().getFullYear()
+interface StatBarProps {
+  team: Team
+}
 
-export const StatBar = ({ team }: Props) => {
-  const [selected, setSelected] = useState(() => String(currentYear))
-
-  const selectedYear =
-    selected === String(currentYear)
-      ? {
-          sumDonations: team.sumDonations,
-          fundraisingGoal: team.fundraisingGoal,
-          numDonations: team.numDonations,
-        }
-      : previousYears[selected]
+export const StatBar = ({ team }: StatBarProps) => {
+  const currentYear = new Date().getFullYear()
 
   return (
-    <div className="mt-5 p-0 sm:mt-0 sm:p-10">
-      <div className="flex flex-col gap-1 bg-[#050E52] py-5 sm:rounded-xl sm:px-0">
-        <div className="btn-group self-center">
-          {[...Object.keys(previousYears), String(currentYear)].map((year) => (
-            <button
-              key={year}
-              className={clsx('btn', {
-                'btn-active !bg-orange-600! text-white!': year === selected,
-                'bg-[#030933]!': year !== selected,
-              })}
-              onClick={() => setSelected(year)}
-              type="button"
-            >
-              {year}
-            </button>
-          ))}
-        </div>
-        <dl className="flex flex-col px-10 py-5 sm:flex-row">
-          <Stat label="Total Donations" value={selectedYear.numDonations} />
-          <Stat
-            label="Amount Raised"
-            value={currencyFormat(selectedYear.sumDonations)}
-          />
-          <Stat
-            label={`${selected} Goal`}
-            value={currencyFormat(selectedYear.fundraisingGoal)}
-          />
-        </dl>
-      </div>
-    </div>
+    <>
+      <section className="mb-12">
+        <Card font="retro">
+          <CardHeader>
+            <CardTitle className="text-center flex items-center justify-center gap-3">
+              <span>{currentYear} CAMPAIGN</span>
+              <Badge variant="secondary">IN PROGRESS</Badge>
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div className="text-center p-4 bg-muted/50 rounded-lg">
+                <div className="text-3xl font-bold text-primary retro">
+                  {currencyFormat(team.sumDonations)}
+                </div>
+                <div className="text-xs text-muted-foreground retro mt-1">
+                  RAISED
+                </div>
+              </div>
+              <div className="text-center p-4 bg-muted/50 rounded-lg">
+                <div className="text-3xl font-bold text-primary retro">
+                  {currencyFormat(team.fundraisingGoal)}
+                </div>
+                <div className="text-xs text-muted-foreground retro mt-1">
+                  GOAL
+                </div>
+              </div>
+              <div className="text-center p-4 bg-muted/50 rounded-lg">
+                <div className="text-3xl font-bold text-primary retro">
+                  {team.numDonations}
+                </div>
+                <div className="text-xs text-muted-foreground retro mt-1">
+                  DONATIONS
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </section>
+      <section className="mb-12">
+        <SaveSlots
+          slots={Object.entries(previousYears).map(([year, data]) => ({
+            id: year,
+            name: `YEAR ${year}`,
+            description: `${currencyFormat(data.sumDonations)} raised · ${data.numDonations} donations`,
+            isEmpty: false,
+          }))}
+          layout="grid"
+          title="QUEST LOG"
+          showPreview={false}
+          showTimestamp={false}
+        />
+      </section>
+    </>
   )
 }
