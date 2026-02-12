@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import type { TeamParticipant } from 'extra-life-ts'
 import { organizeMembers, sortBy } from './helpers'
+import type { TeamParticipant } from 'extra-life-ts'
 
 describe('sortBy', () => {
   it('should sort by a single property', () => {

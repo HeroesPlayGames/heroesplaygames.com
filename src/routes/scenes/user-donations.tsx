@@ -39,10 +39,12 @@ function UserDonationsScene() {
   }
 
   return (
-    <FitText
-      text={`${member.displayName.split(' ')[0]} - ${currencyFormat(member.sumDonations)} ${
-        showGoal ? `/ ${currencyFormat(member.fundraisingGoal)}` : ''
-      }`}
-    />
+    <div className="bg-[#030933] min-h-screen">
+      <FitText
+        text={`${member.displayName.split(' ')[0]} - ${currencyFormat(member.sumDonations)} ${
+          showGoal ? `/ ${currencyFormat(member.fundraisingGoal)}` : ''
+        }`}
+      />
+    </div>
   )
 }

@@ -48,11 +48,11 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark theme-vhs">
       <head>
         <HeadContent />
       </head>
-      <body className="text-gray-100 antialiased">
+      <body className="antialiased">
         {children}
         <TanStackDevtools
           config={{

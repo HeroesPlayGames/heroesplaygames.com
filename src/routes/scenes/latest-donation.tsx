@@ -21,5 +21,9 @@ function LatestDonationScene() {
 
   if (!data.amount) return null
 
-  return <FitText text={`${data.displayName ?? 'Anonymous'}-$${data.amount}`} />
+  return (
+    <div className="bg-[#030933] min-h-screen">
+      <FitText text={`${data.displayName ?? 'Anonymous'}-$${data.amount}`} />
+    </div>
+  )
 }

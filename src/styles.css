@@ -1,92 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 @import 'tailwindcss';
-@plugin "daisyui";
-
-@theme {
-  --font-sans:
-    'Inter', 'Nunito Sans', ui-sans-serif, system-ui, sans-serif,
-    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  --color-brand-start: hsl(327deg 62% 56%);
-  --color-brand-end: hsl(229deg 64% 50%);
-  --color-brand:
-    hsl(327deg 62% 56%) 0%, hsl(276deg 57% 57%) 8%, hsl(225deg 52% 57%) 17%,
-    hsl(174deg 47% 57%) 25%, hsl(120deg 57% 56%) 33%, hsl(66deg 68% 55%) 42%,
-    hsl(12deg 78% 54%) 50%, hsl(37deg 68% 53%) 58%, hsl(62deg 58% 52%) 67%,
-    hsl(87deg 49% 51%) 75%, hsl(134deg 54% 51%) 83%, hsl(181deg 58% 50%) 92%,
-    hsl(229deg 64% 50%) 100%;
-}
-
-/* 
-  DaisyUI v5 Theme Configuration
-  We define the variables for our custom theme.
-  Applying to :root makes it the default.
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+/*
+  ---break---
 */
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: 'Press Start 2P', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Press Start 2P', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Press Start 2P', system-ui, -apple-system, sans-serif;
+  --color-border: var(--border);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-muted: var(--muted);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-card: var(--card);
+}
+
 :root {
-  --primary: #050e52;
-  --primary-content: #ffffff;
-  --secondary: #d926a9;
-  --secondary-content: #ffffff;
-  --accent: #1fb2a6;
-  --accent-content: #ffffff;
-  --neutral: #191d24;
-  --neutral-content: #ffffff;
-  --base-100: #2a303c;
-  --base-content: #ffffff;
-  --info: #3abff8;
-  --success: #36d399;
-  --warning: #fbbd23;
-  --error: #f87272;
-
-  --rounded-box: 1rem;
-  --rounded-btn: 0.5rem;
-  --rounded-badge: 1.9rem;
+  --background: oklch(0.9768 0.0142 308.299);
+  --foreground: oklch(0.2905 0.1432 302.7167);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.2905 0.1432 302.7167);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.2905 0.1432 302.7167);
+  --primary: oklch(0.5915 0.2569 322.8961);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.5575 0.2525 302.3212);
+  --secondary-foreground: oklch(1 0 0);
+  --muted: oklch(0.9464 0.0327 307.1745);
+  --muted-foreground: oklch(0.4383 0.1983 303.7241);
+  --accent: oklch(0.903 0.0732 319.6198);
+  --accent-foreground: oklch(0.3807 0.1661 304.9874);
+  --destructive: oklch(0.5246 0.199 3.9582);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.9024 0.0604 306.703);
+  --input: oklch(0.9024 0.0604 306.703);
+  --ring: oklch(0.5876 0.1389 241.9661);
+  --chart-1: oklch(0.5915 0.2569 322.8961);
+  --chart-2: oklch(0.5575 0.2525 302.3212);
+  --chart-3: oklch(0.5876 0.1389 241.9661);
+  --chart-4: oklch(0.6002 0.1038 184.704);
+  --chart-5: oklch(0.5916 0.218 0.5844);
+  --sidebar: oklch(0.9768 0.0142 308.299);
+  --sidebar-foreground: oklch(0.2905 0.1432 302.7167);
+  --sidebar-primary: oklch(0.5915 0.2569 322.8961);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.903 0.0732 319.6198);
+  --sidebar-accent-foreground: oklch(0.3807 0.1661 304.9874);
+  --sidebar-border: oklch(0.9024 0.0604 306.703);
+  --sidebar-ring: oklch(0.5876 0.1389 241.9661);
+  --font-sans: 'Press Start 2P', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Press Start 2P', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Press Start 2P', system-ui, -apple-system, sans-serif;
+  --radius: 0.3rem;
+  --shadow-2xs: 0px 0px 8px 1px hsl(198.6301 88.664% 48.4314% / 0.05);
+  --shadow-xs: 0px 0px 8px 1px hsl(198.6301 88.664% 48.4314% / 0.05);
+  --shadow-sm:
+    0px 0px 8px 1px hsl(198.6301 88.664% 48.4314% / 0.1),
+    0px 1px 2px 0px hsl(198.6301 88.664% 48.4314% / 0.1);
+  --shadow:
+    0px 0px 8px 1px hsl(198.6301 88.664% 48.4314% / 0.1),
+    0px 1px 2px 0px hsl(198.6301 88.664% 48.4314% / 0.1);
+  --shadow-md:
+    0px 0px 8px 1px hsl(198.6301 88.664% 48.4314% / 0.1),
+    0px 2px 4px 0px hsl(198.6301 88.664% 48.4314% / 0.1);
+  --shadow-lg:
+    0px 0px 8px 1px hsl(198.6301 88.664% 48.4314% / 0.1),
+    0px 4px 6px 0px hsl(198.6301 88.664% 48.4314% / 0.1);
+  --shadow-xl:
+    0px 0px 8px 1px hsl(198.6301 88.664% 48.4314% / 0.1),
+    0px 8px 10px 0px hsl(198.6301 88.664% 48.4314% / 0.1);
+  --shadow-2xl: 0px 0px 8px 1px hsl(198.6301 88.664% 48.4314% / 0.25);
+  --tracking-normal: 0.05rem;
+  --spacing: 0.25rem;
 }
 
-a.gradient-link {
-  background-image: linear-gradient(
-    130deg,
-    hsl(327deg 62% 56%) 0%,
-    hsl(276deg 57% 57%) 8%,
-    hsl(225deg 52% 57%) 17%,
-    hsl(174deg 47% 57%) 25%,
-    hsl(120deg 57% 56%) 33%,
-    hsl(66deg 68% 55%) 42%,
-    hsl(12deg 78% 54%) 50%,
-    hsl(37deg 68% 53%) 58%,
-    hsl(62deg 58% 52%) 67%,
-    hsl(87deg 49% 51%) 75%,
-    hsl(134deg 54% 51%) 83%,
-    hsl(181deg 58% 50%) 92%,
-    hsl(229deg 64% 50%) 100%
-  );
-  background-size:
-    100% 2px,
-    100% 2px;
-  background-position:
-    0 bottom,
-    0 bottom;
-  background-repeat: no-repeat;
-  transition: background-size 0.5s ease-in;
+.dark {
+  --background: oklch(0.145 0.05 280);
+  --foreground: oklch(0.95 0.02 280);
+  --card: oklch(0.2 0.06 280);
+  --card-foreground: oklch(0.95 0.02 280);
+  --popover: oklch(0.2 0.06 280);
+  --popover-foreground: oklch(0.95 0.02 280);
+  --primary: oklch(0.7 0.25 320);
+  --primary-foreground: oklch(0.1 0.02 280);
+  --secondary: oklch(0.65 0.2 280);
+  --secondary-foreground: oklch(0.95 0.02 280);
+  --muted: oklch(0.25 0.05 280);
+  --muted-foreground: oklch(0.7 0.05 280);
+  --accent: oklch(0.75 0.2 190);
+  --accent-foreground: oklch(0.1 0.02 280);
+  --destructive: oklch(0.55 0.25 20);
+  --destructive-foreground: oklch(0.95 0.02 280);
+  --border: oklch(0.75 0.15 190);
+  --input: oklch(0.75 0.15 190);
+  --ring: oklch(0.75 0.15 190);
+  --chart-1: oklch(0.6668 0.2591 322.1499);
+  --chart-2: oklch(0.6268 0.2325 303.9004);
+  --chart-3: oklch(0.6847 0.1479 237.3225);
+  --chart-4: oklch(0.7038 0.123 182.5025);
+  --chart-5: oklch(0.6559 0.2118 354.3084);
+  --sidebar: oklch(0.166 0.0254 298.9423);
+  --sidebar-foreground: oklch(0.9024 0.0604 306.703);
+  --sidebar-primary: oklch(0.6668 0.2591 322.1499);
+  --sidebar-primary-foreground: oklch(0.2795 0.0368 260.031);
+  --sidebar-accent: oklch(0.2932 0.1309 325.661);
+  --sidebar-accent-foreground: oklch(0.833 0.1322 321.4337);
+  --sidebar-border: oklch(0.2905 0.1432 302.7167);
+  --sidebar-ring: oklch(0.6847 0.1479 237.3225);
+  --font-sans: 'Press Start 2P', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Press Start 2P', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Press Start 2P', system-ui, -apple-system, sans-serif;
+  --radius: 0.3rem;
+  --shadow-2xs: 0px 0px 8px 1px hsl(198.6301 88.664% 48.4314% / 0.1);
+  --shadow-xs: 0px 0px 8px 1px hsl(198.6301 88.664% 48.4314% / 0.1);
+  --shadow-sm:
+    0px 0px 8px 1px hsl(198.6301 88.664% 48.4314% / 0.2),
+    0px 1px 2px 0px hsl(198.6301 88.664% 48.4314% / 0.2);
+  --shadow:
+    0px 0px 8px 1px hsl(198.6301 88.664% 48.4314% / 0.2),
+    0px 1px 2px 0px hsl(198.6301 88.664% 48.4314% / 0.2);
+  --shadow-md:
+    0px 0px 8px 1px hsl(198.6301 88.664% 48.4314% / 0.2),
+    0px 2px 4px 0px hsl(198.6301 88.664% 48.4314% / 0.2);
+  --shadow-lg:
+    0px 0px 8px 1px hsl(198.6301 88.664% 48.4314% / 0.2),
+    0px 4px 6px 0px hsl(198.6301 88.664% 48.4314% / 0.2);
+  --shadow-xl:
+    0px 0px 8px 1px hsl(198.6301 88.664% 48.4314% / 0.2),
+    0px 8px 10px 0px hsl(198.6301 88.664% 48.4314% / 0.2);
+  --shadow-2xl: 0px 0px 8px 1px hsl(198.6301 88.664% 48.4314% / 0.5);
 }
 
-a.gradient-link:hover {
-  background-size: 200% 2px;
+html {
+  font-family:
+    'Press Start 2P',
+    system-ui,
+    -apple-system,
+    sans-serif;
 }
 
-.bg-brand-gradient {
-  background-image: linear-gradient(
-    to right,
-    hsl(327deg 62% 56%) 0%,
-    hsl(276deg 57% 57%) 8%,
-    hsl(225deg 52% 57%) 17%,
-    hsl(174deg 47% 57%) 25%,
-    hsl(120deg 57% 56%) 33%,
-    hsl(66deg 68% 55%) 42%,
-    hsl(12deg 78% 54%) 50%,
-    hsl(37deg 68% 53%) 58%,
-    hsl(62deg 58% 52%) 67%,
-    hsl(87deg 49% 51%) 75%,
-    hsl(134deg 54% 51%) 83%,
-    hsl(181deg 58% 50%) 92%,
-    hsl(229deg 64% 50%) 100%
-  );
+body {
+  background-color: var(--background);
+  color: var(--foreground);
 }
