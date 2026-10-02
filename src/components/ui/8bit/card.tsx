@@ -1,5 +1,4 @@
-import { cva } from "class-variance-authority";
-import type { VariantProps } from "class-variance-authority";
+import { type VariantProps, cva } from "class-variance-authority";
 
 import {
   Card as ShadcnCard,
@@ -31,18 +30,25 @@ export interface BitCardProps
   asChild?: boolean;
 }
 
-function Card({ ...props }: BitCardProps) {
-  const { className, font } = props;
-
+function Card({ className, font, ...props }: BitCardProps) {
   return (
-    <div className={cn("relative border-y-6 border-border p-0!", className)}>
+    <div
+      className={cn(
+        "relative bg-card text-card-foreground border-y-6 border-foreground dark:border-ring p-0!",
+        className,
+      )}
+    >
       <ShadcnCard
         {...props}
-        className={cn("rounded-none border-0 w-full!", font !== "normal" && "retro", className)}
+        className={cn(
+          "rounded-none border-0 w-full! h-full flex flex-col bg-card text-card-foreground shadow-none",
+          font !== "normal" && "retro",
+          className,
+        )}
       />
 
       <div
-        className="border-border pointer-events-none absolute inset-0 -mx-1.5 border-x-6"
+        className={cn("absolute inset-0 border-x-6 -mx-1.5 border-inherit pointer-events-none")}
         aria-hidden="true"
       />
     </div>
@@ -78,7 +84,12 @@ function CardAction({ ...props }: BitCardProps) {
 function CardContent({ ...props }: BitCardProps) {
   const { className, font } = props;
 
-  return <ShadcnCardContent className={cn(font !== "normal" && "retro", className)} {...props} />;
+  return (
+    <ShadcnCardContent
+      className={cn("flex-1", font !== "normal" && "retro", className)}
+      {...props}
+    />
+  );
 }
 
 function CardFooter({ ...props }: BitCardProps) {

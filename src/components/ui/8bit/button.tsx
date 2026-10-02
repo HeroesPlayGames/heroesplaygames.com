@@ -1,5 +1,6 @@
-import { cva } from "class-variance-authority";
-import type { VariantProps } from "class-variance-authority";
+import { type VariantProps, cva } from "class-variance-authority";
+import { Slot } from "radix-ui";
+import type { ButtonHTMLAttributes, Ref } from "react";
 
 import { Button as ShadcnButton } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -21,10 +22,10 @@ export const buttonVariants = cva("", {
       link: "text-primary underline-offset-4 hover:underline",
     },
     size: {
-      default: "h-9 px-4 py-2 has-[>svg]:px-3",
-      sm: "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
-      lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
-      icon: "size-9",
+      default: "",
+      sm: "",
+      lg: "",
+      icon: "",
     },
   },
   defaultVariants: {
@@ -34,19 +35,80 @@ export const buttonVariants = cva("", {
 });
 
 export interface BitButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {
+  extends ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {
   asChild?: boolean;
-  ref?: React.Ref<HTMLButtonElement>;
+  ref?: Ref<HTMLButtonElement>;
 }
 
-function Button({ children, asChild, ...props }: BitButtonProps) {
-  const { variant, size, className, font } = props;
+interface ButtonDecorationsProps {
+  size: BitButtonProps["size"];
+  variant: BitButtonProps["variant"];
+}
+
+function ButtonDecorations({ size, variant }: ButtonDecorationsProps) {
+  return (
+    <span
+      aria-hidden="true"
+      className="pointer-events-none contents"
+      data-slot="button-decorations"
+    >
+      {variant !== "ghost" && variant !== "link" && size !== "icon" && (
+        <>
+          {/* Pixelated border */}
+          <span className="bg-foreground dark:bg-ring absolute -top-1.5 left-1.5 h-1.5 w-1/2" />
+          <span className="bg-foreground dark:bg-ring absolute -top-1.5 right-1.5 h-1.5 w-1/2" />
+          <span className="bg-foreground dark:bg-ring absolute -bottom-1.5 left-1.5 h-1.5 w-1/2" />
+          <span className="bg-foreground dark:bg-ring absolute right-1.5 -bottom-1.5 h-1.5 w-1/2" />
+          <span className="bg-foreground dark:bg-ring absolute top-0 left-0 size-1.5" />
+          <span className="bg-foreground dark:bg-ring absolute top-0 right-0 size-1.5" />
+          <span className="bg-foreground dark:bg-ring absolute bottom-0 left-0 size-1.5" />
+          <span className="bg-foreground dark:bg-ring absolute right-0 bottom-0 size-1.5" />
+          <span className="bg-foreground dark:bg-ring absolute top-1.5 -left-1.5 h-[calc(100%-12px)] w-1.5" />
+          <span className="bg-foreground dark:bg-ring absolute top-1.5 -right-1.5 h-[calc(100%-12px)] w-1.5" />
+          {variant !== "outline" && (
+            <>
+              {/* Top shadow */}
+              <span className="bg-foreground/20 absolute top-0 left-0 h-1.5 w-full" />
+              <span className="bg-foreground/20 absolute top-1.5 left-0 h-1.5 w-3" />
+
+              {/* Bottom shadow */}
+              <span className="bg-foreground/20 absolute bottom-0 left-0 h-1.5 w-full" />
+              <span className="bg-foreground/20 absolute right-0 bottom-1.5 h-1.5 w-3" />
+            </>
+          )}
+        </>
+      )}
+
+      {size === "icon" && (
+        <>
+          <span className="bg-foreground dark:bg-ring absolute top-0 left-0 h-1.25 w-full md:h-1.5" />
+          <span className="bg-foreground dark:bg-ring absolute bottom-0 h-1.25 w-full md:h-1.5" />
+          <span className="bg-foreground dark:bg-ring absolute top-1 -left-1 h-1/2 w-1.25 md:w-1.5" />
+          <span className="bg-foreground dark:bg-ring absolute bottom-1 -left-1 h-1/2 w-1.25 md:w-1.5" />
+          <span className="bg-foreground dark:bg-ring absolute top-1 -right-1 h-1/2 w-1.25 md:w-1.5" />
+          <span className="bg-foreground dark:bg-ring absolute -right-1 bottom-1 h-1/2 w-1.25 md:w-1.5" />
+        </>
+      )}
+    </span>
+  );
+}
+
+function Button({
+  asChild = false,
+  children,
+  className,
+  font,
+  size,
+  variant,
+  ...props
+}: BitButtonProps) {
+  const decorations = <ButtonDecorations size={size} variant={variant} />;
 
   return (
     <ShadcnButton
       {...props}
       className={cn(
-        "rounded-none active:translate-y-1 transition-transform relative inline-flex items-center justify-center gap-1.5 border-none m-1.5",
+        "rounded-none active:translate-y-1 transition-transform relative inline-flex items-center justify-center gap-1.5 border-none",
         size === "icon" && "mx-1 my-0",
         font !== "normal" && "retro",
         className,
@@ -55,91 +117,8 @@ function Button({ children, asChild, ...props }: BitButtonProps) {
       variant={variant}
       asChild={asChild}
     >
-      {asChild ? (
-        <span className="relative inline-flex items-center justify-center gap-1.5">
-          {children}
-
-          {variant !== "ghost" && variant !== "link" && size !== "icon" && (
-            <>
-              {/* Pixelated border */}
-              <div className="bg-border absolute -top-1.5 left-1.5 h-1.5 w-1/2" />
-              <div className="bg-border absolute -top-1.5 right-1.5 h-1.5 w-1/2" />
-              <div className="bg-border absolute -bottom-1.5 left-1.5 h-1.5 w-1/2" />
-              <div className="bg-border absolute right-1.5 -bottom-1.5 h-1.5 w-1/2" />
-              <div className="bg-border absolute top-0 left-0 size-1.5" />
-              <div className="bg-border absolute top-0 right-0 size-1.5" />
-              <div className="bg-border absolute bottom-0 left-0 size-1.5" />
-              <div className="bg-border absolute right-0 bottom-0 size-1.5" />
-              <div className="bg-border absolute top-1.5 -left-1.5 h-[calc(100%-12px)] w-1.5" />
-              <div className="bg-border absolute top-1.5 -right-1.5 h-[calc(100%-12px)] w-1.5" />
-              {variant !== "outline" && (
-                <>
-                  {/* Top shadow */}
-                  <div className="bg-border/20 absolute top-0 left-0 h-1.5 w-full" />
-                  <div className="bg-border/20 absolute top-1.5 left-0 h-1.5 w-3" />
-
-                  {/* Bottom shadow */}
-                  <div className="bg-border/20 absolute bottom-0 left-0 h-1.5 w-full" />
-                  <div className="bg-border/20 absolute right-0 bottom-1.5 h-1.5 w-3" />
-                </>
-              )}
-            </>
-          )}
-
-          {size === "icon" && (
-            <>
-              <div className="bg-border pointer-events-none absolute top-0 left-0 h-1.25 w-full md:h-1.5" />
-              <div className="bg-border pointer-events-none absolute bottom-0 h-1.25 w-full md:h-1.5" />
-              <div className="bg-border pointer-events-none absolute top-1 -left-1 h-1/2 w-1.25 md:w-1.5" />
-              <div className="bg-border pointer-events-none absolute bottom-1 -left-1 h-1/2 w-1.25 md:w-1.5" />
-              <div className="bg-border pointer-events-none absolute top-1 -right-1 h-1/2 w-1.25 md:w-1.5" />
-              <div className="bg-border pointer-events-none absolute -right-1 bottom-1 h-1/2 w-1.25 md:w-1.5" />
-            </>
-          )}
-        </span>
-      ) : (
-        <>
-          {children}
-
-          {variant !== "ghost" && variant !== "link" && size !== "icon" && (
-            <>
-              {/* Pixelated border */}
-              <div className="bg-border absolute -top-1.5 left-1.5 h-1.5 w-1/2" />
-              <div className="bg-border absolute -top-1.5 right-1.5 h-1.5 w-1/2" />
-              <div className="bg-border absolute -bottom-1.5 left-1.5 h-1.5 w-1/2" />
-              <div className="bg-border absolute right-1.5 -bottom-1.5 h-1.5 w-1/2" />
-              <div className="bg-border absolute top-0 left-0 size-1.5" />
-              <div className="bg-border absolute top-0 right-0 size-1.5" />
-              <div className="bg-border absolute bottom-0 left-0 size-1.5" />
-              <div className="bg-border absolute right-0 bottom-0 size-1.5" />
-              <div className="bg-border absolute top-1.5 -left-1.5 h-[calc(100%-12px)] w-1.5" />
-              <div className="bg-border absolute top-1.5 -right-1.5 h-[calc(100%-12px)] w-1.5" />
-              {variant !== "outline" && (
-                <>
-                  {/* Top shadow */}
-                  <div className="bg-border/20 absolute top-0 left-0 h-1.5 w-full" />
-                  <div className="bg-border/20 absolute top-1.5 left-0 h-1.5 w-3" />
-
-                  {/* Bottom shadow */}
-                  <div className="bg-border/20 absolute bottom-0 left-0 h-1.5 w-full" />
-                  <div className="bg-border/20 absolute right-0 bottom-1.5 h-1.5 w-3" />
-                </>
-              )}
-            </>
-          )}
-
-          {size === "icon" && (
-            <>
-              <div className="bg-border pointer-events-none absolute top-0 left-0 h-1.25 w-full md:h-1.5" />
-              <div className="bg-border pointer-events-none absolute bottom-0 h-1.25 w-full md:h-1.5" />
-              <div className="bg-border pointer-events-none absolute top-1 -left-1 h-1/2 w-1.25 md:w-1.5" />
-              <div className="bg-border pointer-events-none absolute bottom-1 -left-1 h-1/2 w-1.25 md:w-1.5" />
-              <div className="bg-border pointer-events-none absolute top-1 -right-1 h-1/2 w-1.25 md:w-1.5" />
-              <div className="bg-border pointer-events-none absolute -right-1 bottom-1 h-1/2 w-1.25 md:w-1.5" />
-            </>
-          )}
-        </>
-      )}
+      {asChild ? <Slot.Slottable>{children}</Slot.Slottable> : children}
+      {decorations}
     </ShadcnButton>
   );
 }

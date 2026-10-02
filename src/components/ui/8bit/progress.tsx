@@ -1,6 +1,5 @@
-import * as ProgressPrimitive from "@radix-ui/react-progress";
-import { cva } from "class-variance-authority";
-import type { VariantProps } from "class-variance-authority";
+import { type VariantProps, cva } from "class-variance-authority";
+import { Progress as ProgressPrimitive } from "radix-ui";
 
 import { cn } from "@/lib/utils";
 
@@ -67,7 +66,7 @@ function Progress({ className, font, variant, value, progressBg, ...props }: Bit
                   <div
                     key={i}
                     className={cn(
-                      "flex-1 h-full mx-[1px]",
+                      "flex-1 h-full mx-px",
                       i < filledSquares ? progressBg || "bg-primary" : "bg-transparent",
                     )}
                   />
@@ -79,12 +78,12 @@ function Progress({ className, font, variant, value, progressBg, ...props }: Bit
       </ProgressPrimitive.Root>
 
       <div
-        className="border-border pointer-events-none absolute inset-0 -my-1 border-y-4"
+        className="border-foreground dark:border-ring pointer-events-none absolute inset-0 -my-1 border-y-4"
         aria-hidden="true"
       />
 
       <div
-        className="border-border pointer-events-none absolute inset-0 -mx-1 border-x-4"
+        className="border-foreground dark:border-ring pointer-events-none absolute inset-0 -mx-1 border-x-4"
         aria-hidden="true"
       />
     </div>
