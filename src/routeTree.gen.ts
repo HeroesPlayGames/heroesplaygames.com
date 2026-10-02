@@ -9,31 +9,26 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as ScenesRouteImport } from './routes/scenes'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ScenesUserDonationsRouteImport } from './routes/scenes/user-donations'
-import { Route as ScenesTopDonationRouteImport } from './routes/scenes/top-donation'
-import { Route as ScenesTextRouteImport } from './routes/scenes/text'
+import { Route as ScenesRouteImport } from './routes/scenes'
 import { Route as ScenesLatestDonationRouteImport } from './routes/scenes/latest-donation'
+import { Route as ScenesTextRouteImport } from './routes/scenes/text'
+import { Route as ScenesTopDonationRouteImport } from './routes/scenes/top-donation'
+import { Route as ScenesUserDonationsRouteImport } from './routes/scenes/user-donations'
 
-const ScenesRoute = ScenesRouteImport.update({
-  id: '/scenes',
-  path: '/scenes',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ScenesUserDonationsRoute = ScenesUserDonationsRouteImport.update({
-  id: '/user-donations',
-  path: '/user-donations',
-  getParentRoute: () => ScenesRoute,
+const ScenesRoute = ScenesRouteImport.update({
+  id: '/scenes',
+  path: '/scenes',
+  getParentRoute: () => rootRouteImport,
 } as any)
-const ScenesTopDonationRoute = ScenesTopDonationRouteImport.update({
-  id: '/top-donation',
-  path: '/top-donation',
+const ScenesLatestDonationRoute = ScenesLatestDonationRouteImport.update({
+  id: '/latest-donation',
+  path: '/latest-donation',
   getParentRoute: () => ScenesRoute,
 } as any)
 const ScenesTextRoute = ScenesTextRouteImport.update({
@@ -41,9 +36,14 @@ const ScenesTextRoute = ScenesTextRouteImport.update({
   path: '/text',
   getParentRoute: () => ScenesRoute,
 } as any)
-const ScenesLatestDonationRoute = ScenesLatestDonationRouteImport.update({
-  id: '/latest-donation',
-  path: '/latest-donation',
+const ScenesTopDonationRoute = ScenesTopDonationRouteImport.update({
+  id: '/top-donation',
+  path: '/top-donation',
+  getParentRoute: () => ScenesRoute,
+} as any)
+const ScenesUserDonationsRoute = ScenesUserDonationsRouteImport.update({
+  id: '/user-donations',
+  path: '/user-donations',
   getParentRoute: () => ScenesRoute,
 } as any)
 
@@ -106,13 +106,6 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/scenes': {
-      id: '/scenes'
-      path: '/scenes'
-      fullPath: '/scenes'
-      preLoaderRoute: typeof ScenesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -120,18 +113,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/scenes/user-donations': {
-      id: '/scenes/user-donations'
-      path: '/user-donations'
-      fullPath: '/scenes/user-donations'
-      preLoaderRoute: typeof ScenesUserDonationsRouteImport
-      parentRoute: typeof ScenesRoute
+    '/scenes': {
+      id: '/scenes'
+      path: '/scenes'
+      fullPath: '/scenes'
+      preLoaderRoute: typeof ScenesRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/scenes/top-donation': {
-      id: '/scenes/top-donation'
-      path: '/top-donation'
-      fullPath: '/scenes/top-donation'
-      preLoaderRoute: typeof ScenesTopDonationRouteImport
+    '/scenes/latest-donation': {
+      id: '/scenes/latest-donation'
+      path: '/latest-donation'
+      fullPath: '/scenes/latest-donation'
+      preLoaderRoute: typeof ScenesLatestDonationRouteImport
       parentRoute: typeof ScenesRoute
     }
     '/scenes/text': {
@@ -141,11 +134,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ScenesTextRouteImport
       parentRoute: typeof ScenesRoute
     }
-    '/scenes/latest-donation': {
-      id: '/scenes/latest-donation'
-      path: '/latest-donation'
-      fullPath: '/scenes/latest-donation'
-      preLoaderRoute: typeof ScenesLatestDonationRouteImport
+    '/scenes/top-donation': {
+      id: '/scenes/top-donation'
+      path: '/top-donation'
+      fullPath: '/scenes/top-donation'
+      preLoaderRoute: typeof ScenesTopDonationRouteImport
+      parentRoute: typeof ScenesRoute
+    }
+    '/scenes/user-donations': {
+      id: '/scenes/user-donations'
+      path: '/user-donations'
+      fullPath: '/scenes/user-donations'
+      preLoaderRoute: typeof ScenesUserDonationsRouteImport
       parentRoute: typeof ScenesRoute
     }
   }

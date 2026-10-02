@@ -1,17 +1,18 @@
-import type { Donation } from 'extra-life-ts'
-import { Leaderboard as ThemedLeaderboard } from '@/components/ui/8bit/blocks/leaderboard'
+import type { Donation } from "extra-life-ts";
+
+import { Leaderboard as ThemedLeaderboard } from "@/components/ui/8bit/blocks/leaderboard";
 
 interface LeaderboardProps {
-  donations: Array<Donation>
+  donations: Array<Donation>;
 }
 
 export function Leaderboard({ donations }: LeaderboardProps) {
   return (
     <section className="mb-12">
       <ThemedLeaderboard
-        players={donations.map((donation) => ({
-          id: donation.donationID || String(Math.random()),
-          name: donation.displayName || 'Anonymous Hero',
+        players={donations.map((donation, index) => ({
+          id: donation.donationID || `donation-${index}`,
+          name: donation.displayName || "Anonymous Hero",
           score: donation.amount,
           message: donation.message,
         }))}
@@ -19,5 +20,5 @@ export function Leaderboard({ donations }: LeaderboardProps) {
         maxPlayers={10}
       />
     </section>
-  )
+  );
 }

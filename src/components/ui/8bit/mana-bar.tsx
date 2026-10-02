@@ -1,19 +1,14 @@
-import type { BitProgressProps } from '@/components/ui/8bit/progress'
-import { Progress } from '@/components/ui/8bit/progress'
+import type { BitProgressProps } from "@/components/ui/8bit/progress";
+import { Progress } from "@/components/ui/8bit/progress";
 
-interface ManaBarProps extends React.ComponentProps<'div'> {
-  className?: string
-  props?: BitProgressProps
-  variant?: 'retro' | 'default'
-  value?: number
+interface ManaBarProps extends React.ComponentProps<"div"> {
+  className?: string;
+  props?: BitProgressProps;
+  variant?: "retro" | "default";
+  value?: number;
 }
 
-export default function ManaBar({
-  className,
-  variant,
-  value,
-  ...props
-}: ManaBarProps) {
+export default function ManaBar({ className, variant, value, ...props }: ManaBarProps) {
   return (
     <Progress
       {...props}
@@ -22,5 +17,5 @@ export default function ManaBar({
       className={className}
       progressBg="bg-blue-500"
     />
-  )
+  );
 }

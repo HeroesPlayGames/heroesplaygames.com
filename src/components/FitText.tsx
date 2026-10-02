@@ -1,7 +1,7 @@
-import '@fontsource/nunito-sans/900.css'
+import "@fontsource/nunito-sans/900.css";
 
 interface Props {
-  text: string
+  text: string;
 }
 
 export const FitText = ({ text }: Props) => {
@@ -60,5 +60,5 @@ export const FitText = ({ text }: Props) => {
         </text>
       </svg>
     </div>
-  )
-}
+  );
+};

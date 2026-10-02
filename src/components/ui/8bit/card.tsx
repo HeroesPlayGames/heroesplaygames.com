@@ -1,7 +1,5 @@
-import { cva } from 'class-variance-authority'
-import type { VariantProps } from 'class-variance-authority'
-
-import { cn } from '@/lib/utils'
+import { cva } from "class-variance-authority";
+import type { VariantProps } from "class-variance-authority";
 
 import {
   Card as ShadcnCard,
@@ -11,122 +9,88 @@ import {
   CardFooter as ShadcnCardFooter,
   CardHeader as ShadcnCardHeader,
   CardTitle as ShadcnCardTitle,
-} from '@/components/ui/card'
+} from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 
-import '@/components/ui/8bit/styles/retro.css'
+import "@/components/ui/8bit/styles/retro.css";
 
-export const cardVariants = cva('', {
+export const cardVariants = cva("", {
   variants: {
     font: {
-      normal: '',
-      retro: 'retro',
+      normal: "",
+      retro: "retro",
     },
   },
   defaultVariants: {
-    font: 'retro',
+    font: "retro",
   },
-})
+});
 
 export interface BitCardProps
-  extends React.ComponentProps<'div'>, VariantProps<typeof cardVariants> {
-  asChild?: boolean
+  extends React.ComponentProps<"div">, VariantProps<typeof cardVariants> {
+  asChild?: boolean;
 }
 
 function Card({ ...props }: BitCardProps) {
-  const { className, font } = props
+  const { className, font } = props;
 
   return (
-    <div className={cn('relative border-y-6 border-border p-0!', className)}>
+    <div className={cn("relative border-y-6 border-border p-0!", className)}>
       <ShadcnCard
         {...props}
-        className={cn(
-          'rounded-none border-0 w-full!',
-          font !== 'normal' && 'retro',
-          className,
-        )}
+        className={cn("rounded-none border-0 w-full!", font !== "normal" && "retro", className)}
       />
 
       <div
-        className="absolute inset-0 border-x-6 -mx-1.5 border-border pointer-events-none"
+        className="border-border pointer-events-none absolute inset-0 -mx-1.5 border-x-6"
         aria-hidden="true"
       />
     </div>
-  )
+  );
 }
 
 function CardHeader({ ...props }: BitCardProps) {
-  const { className, font } = props
+  const { className, font } = props;
 
-  return (
-    <ShadcnCardHeader
-      className={cn(font !== 'normal' && 'retro', className)}
-      {...props}
-    />
-  )
+  return <ShadcnCardHeader className={cn(font !== "normal" && "retro", className)} {...props} />;
 }
 
 function CardTitle({ ...props }: BitCardProps) {
-  const { className, font } = props
+  const { className, font } = props;
 
-  return (
-    <ShadcnCardTitle
-      className={cn(font !== 'normal' && 'retro', className)}
-      {...props}
-    />
-  )
+  return <ShadcnCardTitle className={cn(font !== "normal" && "retro", className)} {...props} />;
 }
 
 function CardDescription({ ...props }: BitCardProps) {
-  const { className, font } = props
+  const { className, font } = props;
 
   return (
-    <ShadcnCardDescription
-      className={cn(font !== 'normal' && 'retro', className)}
-      {...props}
-    />
-  )
+    <ShadcnCardDescription className={cn(font !== "normal" && "retro", className)} {...props} />
+  );
 }
 
 function CardAction({ ...props }: BitCardProps) {
-  const { className, font } = props
+  const { className, font } = props;
 
-  return (
-    <ShadcnCardAction
-      className={cn(font !== 'normal' && 'retro', className)}
-      {...props}
-    />
-  )
+  return <ShadcnCardAction className={cn(font !== "normal" && "retro", className)} {...props} />;
 }
 
 function CardContent({ ...props }: BitCardProps) {
-  const { className, font } = props
+  const { className, font } = props;
 
-  return (
-    <ShadcnCardContent
-      className={cn(font !== 'normal' && 'retro', className)}
-      {...props}
-    />
-  )
+  return <ShadcnCardContent className={cn(font !== "normal" && "retro", className)} {...props} />;
 }
 
 function CardFooter({ ...props }: BitCardProps) {
-  const { className, font } = props
+  const { className, font } = props;
 
   return (
     <ShadcnCardFooter
       data-slot="card-footer"
-      className={cn(font !== 'normal' && 'retro', className)}
+      className={cn(font !== "normal" && "retro", className)}
       {...props}
     />
-  )
+  );
 }
 
-export {
-  Card,
-  CardHeader,
-  CardFooter,
-  CardTitle,
-  CardAction,
-  CardDescription,
-  CardContent,
-}
+export { Card, CardHeader, CardFooter, CardTitle, CardAction, CardDescription, CardContent };

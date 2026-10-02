@@ -1,16 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-@import 'tailwindcss';
-@import 'tw-animate-css';
-@import 'shadcn/tailwind.css';
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 /*
   ---break---
 */
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-sans: 'Press Start 2P', system-ui, -apple-system, sans-serif;
-  --font-serif: 'Press Start 2P', system-ui, -apple-system, sans-serif;
-  --font-mono: 'Press Start 2P', system-ui, -apple-system, sans-serif;
+  --font-sans: "Press Start 2P", system-ui, -apple-system, sans-serif;
+  --font-serif: "Press Start 2P", system-ui, -apple-system, sans-serif;
+  --font-mono: "Press Start 2P", system-ui, -apple-system, sans-serif;
   --color-border: var(--border);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -56,9 +56,9 @@
   --sidebar-accent-foreground: oklch(0.3807 0.1661 304.9874);
   --sidebar-border: oklch(0.9024 0.0604 306.703);
   --sidebar-ring: oklch(0.5876 0.1389 241.9661);
-  --font-sans: 'Press Start 2P', system-ui, -apple-system, sans-serif;
-  --font-serif: 'Press Start 2P', system-ui, -apple-system, sans-serif;
-  --font-mono: 'Press Start 2P', system-ui, -apple-system, sans-serif;
+  --font-sans: "Press Start 2P", system-ui, -apple-system, sans-serif;
+  --font-serif: "Press Start 2P", system-ui, -apple-system, sans-serif;
+  --font-mono: "Press Start 2P", system-ui, -apple-system, sans-serif;
   --radius: 0.3rem;
   --shadow-2xs: 0px 0px 8px 1px hsl(198.6301 88.664% 48.4314% / 0.05);
   --shadow-xs: 0px 0px 8px 1px hsl(198.6301 88.664% 48.4314% / 0.05);
@@ -115,9 +115,9 @@
   --sidebar-accent-foreground: oklch(0.833 0.1322 321.4337);
   --sidebar-border: oklch(0.2905 0.1432 302.7167);
   --sidebar-ring: oklch(0.6847 0.1479 237.3225);
-  --font-sans: 'Press Start 2P', system-ui, -apple-system, sans-serif;
-  --font-serif: 'Press Start 2P', system-ui, -apple-system, sans-serif;
-  --font-mono: 'Press Start 2P', system-ui, -apple-system, sans-serif;
+  --font-sans: "Press Start 2P", system-ui, -apple-system, sans-serif;
+  --font-serif: "Press Start 2P", system-ui, -apple-system, sans-serif;
+  --font-mono: "Press Start 2P", system-ui, -apple-system, sans-serif;
   --radius: 0.3rem;
   --shadow-2xs: 0px 0px 8px 1px hsl(198.6301 88.664% 48.4314% / 0.1);
   --shadow-xs: 0px 0px 8px 1px hsl(198.6301 88.664% 48.4314% / 0.1);
@@ -141,7 +141,7 @@
 
 html {
   font-family:
-    'Press Start 2P',
+    "Press Start 2P",
     system-ui,
     -apple-system,
     sans-serif;

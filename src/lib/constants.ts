@@ -1,1 +1,1 @@
-export const EXTRA_LIFE_TEAM_ID = 'heroesplaygames'
+export const EXTRA_LIFE_TEAM_ID = "heroesplaygames";

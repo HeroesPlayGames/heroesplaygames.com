@@ -1,22 +1,23 @@
-import { createFileRoute } from '@tanstack/react-router'
-import { z } from 'zod'
-import { FitText } from '../../components/FitText'
+import { createFileRoute } from "@tanstack/react-router";
+import { z } from "zod";
+
+import { FitText } from "../../components/FitText";
 
 const searchSchema = z.object({
   text: z.string().optional(),
-})
+});
 
-export const Route = createFileRoute('/scenes/text')({
+export const Route = createFileRoute("/scenes/text")({
   component: TextScene,
   validateSearch: searchSchema,
-})
+});
 
 function TextScene() {
-  const { text } = Route.useSearch()
+  const { text } = Route.useSearch();
 
   return (
-    <div className="bg-[#030933] min-h-screen">
-      <FitText text={text ?? ''} />
+    <div className="min-h-screen bg-[#030933]">
+      <FitText text={text ?? ""} />
     </div>
-  )
+  );
 }

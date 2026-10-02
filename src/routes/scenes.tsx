@@ -1,13 +1,13 @@
-import { Outlet, createFileRoute } from '@tanstack/react-router'
+import { Outlet, createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute('/scenes')({
+export const Route = createFileRoute("/scenes")({
   component: RouteComponent,
-})
+});
 
 function RouteComponent() {
   return (
-    <div className="bg-transparent my-0 mx-auto pl-5 overflow-hidden">
+    <div className="mx-auto my-0 overflow-hidden bg-transparent pl-5">
       <Outlet />
     </div>
-  )
+  );
 }

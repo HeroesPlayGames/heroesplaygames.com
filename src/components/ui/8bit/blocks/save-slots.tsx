@@ -1,71 +1,65 @@
-'use client'
+"use client";
 
-import * as React from 'react'
+import { cva } from "class-variance-authority";
+import * as React from "react";
 
-import { cva } from 'class-variance-authority'
+import { Badge } from "@/components/ui/8bit/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/8bit/card";
+import { Separator } from "@/components/ui/8bit/separator";
+import { cn } from "@/lib/utils";
 
-import { cn } from '@/lib/utils'
-
-import { Badge } from '@/components/ui/8bit/badge'
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/8bit/card'
-import { Separator } from '@/components/ui/8bit/separator'
-import '@/components/ui/8bit/styles/retro.css'
+import "@/components/ui/8bit/styles/retro.css";
 
 export interface SaveSlot {
-  id: string
-  isEmpty: boolean
-  name?: string
-  timestamp?: Date | string
-  preview?: string
-  description?: string
+  id: string;
+  isEmpty: boolean;
+  name?: string;
+  timestamp?: Date | string;
+  preview?: string;
+  description?: string;
 }
 
-export interface SaveSlotsProps extends React.ComponentProps<'div'> {
-  slots: Array<SaveSlot>
-  onSlotClick?: (slot: SaveSlot) => void
-  layout?: 'vertical' | 'grid'
-  maxSlots?: number
-  maxVisibleSlots?: number
-  className?: string
-  title?: string
-  showTimestamp?: boolean
-  showPreview?: boolean
+export interface SaveSlotsProps extends React.ComponentProps<"div"> {
+  slots: Array<SaveSlot>;
+  onSlotClick?: (slot: SaveSlot) => void;
+  layout?: "vertical" | "grid";
+  maxSlots?: number;
+  maxVisibleSlots?: number;
+  className?: string;
+  title?: string;
+  showTimestamp?: boolean;
+  showPreview?: boolean;
 }
 
 const slotItemVariants = cva(
-  'group relative flex gap-2 sm:gap-4 p-2 sm:p-4 transition-all duration-200 border-2',
+  "group relative flex gap-2 sm:gap-4 p-2 sm:p-4 transition-all duration-200 border-2",
   {
     variants: {
       state: {
-        empty: 'border-dashed border-muted-foreground/30',
-        filled: 'border-border  bg-muted/30',
+        empty: "border-dashed border-muted-foreground/30",
+        filled: "border-border  bg-muted/30",
       },
     },
     defaultVariants: {
-      state: 'empty',
+      state: "empty",
     },
   },
-)
+);
 
 const previewFrameVariants = cva(
-  'flex items-center justify-center border-4 overflow-hidden shrink-0',
+  "flex items-center justify-center border-4 overflow-hidden shrink-0",
   {
     variants: {
       state: {
-        empty: 'border-dashed border-muted-foreground/40 bg-muted/10',
-        filled: 'border-border bg-background',
+        empty: "border-dashed border-muted-foreground/40 bg-muted/10",
+        filled: "border-border bg-background",
       },
     },
     defaultVariants: {
-      state: 'empty',
+      state: "empty",
     },
   },
-)
+);
 
 // Floppy disk SVG icon for empty slots
 function FloppyIcon({ className }: { className?: string }) {
@@ -78,35 +72,35 @@ function FloppyIcon({ className }: { className?: string }) {
     >
       <path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm0 2v14h14V5H5zm2 2h6v4H7V7zm8 0h2v3h-2V7zm-8 6h10v4H7v-4z" />
     </svg>
-  )
+  );
 }
 
 function formatTimestamp(timestamp: Date | string): string {
-  const date = typeof timestamp === 'string' ? new Date(timestamp) : timestamp
+  const date = typeof timestamp === "string" ? new Date(timestamp) : timestamp;
 
   if (!date || Number.isNaN(date.getTime())) {
-    return 'Unknown date'
+    return "Unknown date";
   }
 
-  const now = new Date()
-  const diff = now.getTime() - date.getTime()
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24))
+  const now = new Date();
+  const diff = now.getTime() - date.getTime();
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
 
   if (days === 0) {
-    return 'Today'
+    return "Today";
   }
   if (days === 1) {
-    return 'Yesterday'
+    return "Yesterday";
   }
   if (days < 7) {
-    return `${days} days ago`
+    return `${days} days ago`;
   }
 
-  return date.toLocaleDateString('en-US', {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
-  })
+  return date.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
 }
 
 function SlotPreview({
@@ -114,44 +108,41 @@ function SlotPreview({
   isEmpty,
   slotNumber,
 }: {
-  preview?: string
-  isEmpty: boolean
-  slotNumber: number
+  preview?: string;
+  isEmpty: boolean;
+  slotNumber: number;
 }) {
-  const state = isEmpty ? 'empty' : 'filled'
+  const state = isEmpty ? "empty" : "filled";
 
   return (
     <div
       aria-hidden="true"
-      className={cn(
-        previewFrameVariants({ state }),
-        'size-14 sm:size-20 md:size-24',
-      )}
+      className={cn(previewFrameVariants({ state }), "size-14 sm:size-20 md:size-24")}
     >
       {isEmpty ? (
         <div className="flex flex-col items-center gap-0.5 sm:gap-1">
-          <FloppyIcon className="size-5 sm:size-8 text-muted-foreground/50" />
-          <span className="retro text-[8px] sm:text-[10px] text-muted-foreground/50">
+          <FloppyIcon className="text-muted-foreground/50 size-5 sm:size-8" />
+          <span className="retro text-muted-foreground/50 text-[8px] sm:text-[10px]">
             {slotNumber}
           </span>
         </div>
       ) : preview ? (
         <img
           alt="Save preview"
-          className="size-full object-cover pixelated"
+          className="pixelated size-full object-cover"
           loading="lazy"
           src={preview}
         />
       ) : (
         <div className="flex flex-col items-center gap-0.5 sm:gap-1">
-          <FloppyIcon className="size-5 sm:size-8 text-muted-foreground" />
-          <span className="retro text-[8px] sm:text-[10px] text-muted-foreground">
+          <FloppyIcon className="text-muted-foreground size-5 sm:size-8" />
+          <span className="retro text-muted-foreground text-[8px] sm:text-[10px]">
             {slotNumber}
           </span>
         </div>
       )}
     </div>
-  )
+  );
 }
 
 function SlotItem({
@@ -161,54 +152,39 @@ function SlotItem({
   showTimestamp,
   onClick,
 }: {
-  slot: SaveSlot
-  index: number
-  showPreview: boolean
-  showTimestamp: boolean
-  onClick?: (slot: SaveSlot) => void
+  slot: SaveSlot;
+  index: number;
+  showPreview: boolean;
+  showTimestamp: boolean;
+  onClick?: (slot: SaveSlot) => void;
 }) {
-  const state = slot.isEmpty ? 'empty' : 'filled'
-  const slotNumber = index + 1
-  const displayName = slot.name || `Slot ${slotNumber}`
+  const state = slot.isEmpty ? "empty" : "filled";
+  const slotNumber = index + 1;
+  const displayName = slot.name || `Slot ${slotNumber}`;
 
   const handleClick = () => {
-    onClick?.(slot)
-  }
-
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault()
-      onClick?.(slot)
-    }
-  }
+    onClick?.(slot);
+  };
 
   return (
-    <div
-      className={cn(slotItemVariants({ state }), 'overflow-hidden')}
+    <button
+      type="button"
+      className={cn(slotItemVariants({ state }), "overflow-hidden text-left")}
       onClick={handleClick}
-      onKeyDown={handleKeyDown}
-      role="button"
-      tabIndex={0}
       aria-label={
-        slot.isEmpty
-          ? `Empty save slot ${slotNumber}`
-          : `Save slot ${slotNumber}: ${displayName}`
+        slot.isEmpty ? `Empty save slot ${slotNumber}` : `Save slot ${slotNumber}: ${displayName}`
       }
     >
       {showPreview && (
-        <SlotPreview
-          preview={slot.preview}
-          isEmpty={slot.isEmpty}
-          slotNumber={slotNumber}
-        />
+        <SlotPreview preview={slot.preview} isEmpty={slot.isEmpty} slotNumber={slotNumber} />
       )}
 
-      <div className="flex-1 min-w-0 flex flex-col justify-center gap-1 sm:gap-2 overflow-hidden">
+      <div className="flex min-w-0 flex-1 flex-col justify-center gap-1 overflow-hidden sm:gap-2">
         <div className="flex items-center gap-1 sm:gap-2">
           <h3
             className={cn(
-              'retro text-[10px] sm:text-xs md:text-sm font-medium truncate flex-1 min-w-0',
-              slot.isEmpty && 'text-muted-foreground',
+              "retro text-[10px] sm:text-xs md:text-sm font-medium truncate flex-1 min-w-0",
+              slot.isEmpty && "text-muted-foreground",
             )}
           >
             {slot.isEmpty ? `EMPTY ${slotNumber}` : displayName}
@@ -218,12 +194,12 @@ function SlotItem({
         {!slot.isEmpty && (
           <>
             {slot.description && (
-              <p className="text-[9px] sm:text-xs text-muted-foreground truncate">
+              <p className="text-muted-foreground truncate text-[9px] sm:text-xs">
                 {slot.description}
               </p>
             )}
             {showTimestamp && slot.timestamp && (
-              <p className="text-[8px] sm:text-[10px] text-muted-foreground/70 retro">
+              <p className="text-muted-foreground/70 retro text-[8px] sm:text-[10px]">
                 {formatTimestamp(slot.timestamp)}
               </p>
             )}
@@ -231,54 +207,48 @@ function SlotItem({
         )}
 
         {slot.isEmpty && (
-          <p className="text-[9px] sm:text-xs text-muted-foreground/60 retro">
-            Click to save
-          </p>
+          <p className="text-muted-foreground/60 retro text-[9px] sm:text-xs">Click to save</p>
         )}
       </div>
-    </div>
-  )
+    </button>
+  );
 }
 
 export function SaveSlots({
   slots,
   onSlotClick,
-  layout = 'vertical',
+  layout = "vertical",
   maxSlots = 10,
   maxVisibleSlots = 4,
   className,
-  title = 'SAVE FILES',
+  title = "SAVE FILES",
   showTimestamp = true,
   showPreview = true,
   ...props
 }: SaveSlotsProps) {
   const displaySlots = React.useMemo(() => {
-    return slots.slice(0, maxSlots)
-  }, [slots, maxSlots])
+    return slots.slice(0, maxSlots);
+  }, [slots, maxSlots]);
 
   const savedCount = React.useMemo(() => {
-    return displaySlots.filter((slot) => !slot.isEmpty).length
-  }, [displaySlots])
+    return displaySlots.filter((slot) => !slot.isEmpty).length;
+  }, [displaySlots]);
 
   const containerClassName = cn(
-    'gap-3',
-    layout === 'grid'
-      ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
-      : 'flex flex-col',
-  )
+    "gap-3",
+    layout === "grid" ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" : "flex flex-col",
+  );
 
   // Calculate scroll area height: each slot is ~100px + 12px gap
-  const slotHeight = 100
-  const gapHeight = 12
-  const scrollHeight =
-    maxVisibleSlots * slotHeight + (maxVisibleSlots - 1) * gapHeight
-  const needsScroll =
-    displaySlots.length > maxVisibleSlots && layout === 'vertical'
+  const slotHeight = 100;
+  const gapHeight = 12;
+  const scrollHeight = maxVisibleSlots * slotHeight + (maxVisibleSlots - 1) * gapHeight;
+  const needsScroll = displaySlots.length > maxVisibleSlots && layout === "vertical";
 
   const slotsContent = (
     <div className={containerClassName}>
       {displaySlots.length === 0 ? (
-        <div className="text-center py-8 text-muted-foreground col-span-full">
+        <div className="text-muted-foreground col-span-full py-8 text-center">
           <p className="retro text-sm">No save slots available</p>
         </div>
       ) : (
@@ -294,13 +264,13 @@ export function SaveSlots({
         ))
       )}
     </div>
-  )
+  );
 
   return (
     <Card className={className} data-slot="save-slots" font="retro" {...props}>
       {title && (
         <CardHeader>
-          <CardTitle className="text-center flex items-center justify-center gap-3 flex-wrap">
+          <CardTitle className="flex flex-wrap items-center justify-center gap-3 text-center">
             <span>{title}</span>
             {savedCount > 0 && (
               <Badge className="text-[9px]" variant="default">
@@ -313,10 +283,7 @@ export function SaveSlots({
 
       <CardContent className="space-y-5">
         {needsScroll ? (
-          <div
-            className="overflow-y-auto"
-            style={{ maxHeight: `${scrollHeight}px` }}
-          >
+          <div className="overflow-y-auto" style={{ maxHeight: `${scrollHeight}px` }}>
             {slotsContent}
           </div>
         ) : (
@@ -327,11 +294,7 @@ export function SaveSlots({
           <>
             <Separator />
             <div className="mt-4 pt-4">
-              <p
-                className={cn(
-                  'text-xs text-muted-foreground text-center retro',
-                )}
-              >
+              <p className={cn("text-xs text-muted-foreground text-center retro")}>
                 {savedCount} of {displaySlots.length} slots used
               </p>
             </div>
@@ -339,7 +302,7 @@ export function SaveSlots({
         )}
       </CardContent>
     </Card>
-  )
+  );
 }
 
-export default SaveSlots
+export default SaveSlots;

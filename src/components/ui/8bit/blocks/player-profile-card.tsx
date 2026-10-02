@@ -1,53 +1,49 @@
-import { cn } from '@/lib/utils'
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/8bit/avatar";
+import { Badge } from "@/components/ui/8bit/badge";
+import { Card, CardContent, CardHeader } from "@/components/ui/8bit/card";
+import HealthBar from "@/components/ui/8bit/health-bar";
+import ManaBar from "@/components/ui/8bit/mana-bar";
+import { Progress } from "@/components/ui/8bit/progress";
+import { cn } from "@/lib/utils";
 
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from '@/components/ui/8bit/avatar'
-import { Badge } from '@/components/ui/8bit/badge'
-import { Card, CardContent, CardHeader } from '@/components/ui/8bit/card'
-import HealthBar from '@/components/ui/8bit/health-bar'
-import ManaBar from '@/components/ui/8bit/mana-bar'
-import { Progress } from '@/components/ui/8bit/progress'
-import '@/components/ui/8bit/styles/retro.css'
+import "@/components/ui/8bit/styles/retro.css";
 
 export interface PlayerStats {
   health?: {
-    current: number
-    max: number
-  }
+    current: number;
+    max: number;
+  };
   mana?: {
-    current: number
-    max: number
-  }
+    current: number;
+    max: number;
+  };
   experience?: {
-    current: number
-    max: number
-  }
-  level?: number
-  [key: string]: unknown // Allow custom stats
+    current: number;
+    max: number;
+  };
+  level?: number;
+  [key: string]: unknown; // Allow custom stats
 }
 
 export interface PlayerProfileCardProps {
-  className?: string
-  playerName: string
-  avatarSrc?: string
-  avatarFallback?: string
-  level?: number
-  stats?: PlayerStats
-  playerClass?: string
-  showLevel?: boolean
-  showHealth?: boolean
-  showMana?: boolean
-  showExperience?: boolean
+  className?: string;
+  playerName: string;
+  avatarSrc?: string;
+  avatarFallback?: string;
+  level?: number;
+  stats?: PlayerStats;
+  playerClass?: string;
+  showLevel?: boolean;
+  showHealth?: boolean;
+  showMana?: boolean;
+  showExperience?: boolean;
   customStats?: Array<{
-    label: string
-    value: number
-    max?: number
-    color?: string
-    variant?: 'retro' | 'default'
-  }>
+    label: string;
+    value: number;
+    max?: number;
+    color?: string;
+    variant?: "retro" | "default";
+  }>;
 }
 
 export default function PlayerProfileCard({
@@ -67,18 +63,16 @@ export default function PlayerProfileCard({
 }: PlayerProfileCardProps) {
   const healthPercentage = stats?.health
     ? Math.round((stats.health.current / stats.health.max) * 100)
-    : 0
+    : 0;
 
-  const manaPercentage = stats?.mana
-    ? Math.round((stats.mana.current / stats.mana.max) * 100)
-    : 0
+  const manaPercentage = stats?.mana ? Math.round((stats.mana.current / stats.mana.max) * 100) : 0;
 
   const experiencePercentage = stats?.experience
     ? Math.round((stats.experience.current / stats.experience.max) * 100)
-    : 0
+    : 0;
 
   return (
-    <Card className={cn('w-full', className)} {...props}>
+    <Card className={cn("w-full", className)} {...props}>
       <CardHeader className="pb-4">
         <div className="flex min-w-0 items-center gap-4">
           <Avatar className="size-16" variant="pixel" font="retro">
@@ -88,14 +82,12 @@ export default function PlayerProfileCard({
             </AvatarFallback>
           </Avatar>
 
-          <div className="flex-1 min-w-0">
+          <div className="min-w-0 flex-1">
             <div className="space-y-2">
-              <h3 className="font-bold truncate md:text-lg">{playerName}</h3>
+              <h3 className="truncate font-bold md:text-lg">{playerName}</h3>
               <div className="flex items-center justify-between gap-2">
                 {playerClass && (
-                  <span className="text-xs text-muted-foreground">
-                    {playerClass}
-                  </span>
+                  <span className="text-muted-foreground text-xs">{playerClass}</span>
                 )}
                 {showLevel && <Badge className="h-4 text-[10px]">Lv.{level}</Badge>}
               </div>
@@ -108,26 +100,22 @@ export default function PlayerProfileCard({
         {/* Health Bar */}
         {showHealth && stats?.health && (
           <div className="space-y-1">
-            <div className="flex justify-between items-center">
+            <div className="flex items-center justify-between">
               <span className="text-sm font-medium">Health</span>
-              <span className="text-[9px] sm:text-xs text-muted-foreground retro">
+              <span className="text-muted-foreground retro text-[9px] sm:text-xs">
                 {stats.health.current}/{stats.health.max}
               </span>
             </div>
-            <HealthBar
-              value={healthPercentage}
-              variant="retro"
-              className="h-3"
-            />
+            <HealthBar value={healthPercentage} variant="retro" className="h-3" />
           </div>
         )}
 
         {/* Mana Bar */}
         {showMana && stats?.mana && (
           <div className="space-y-1">
-            <div className="flex justify-between items-center">
+            <div className="flex items-center justify-between">
               <span className="text-sm font-medium">Mana</span>
-              <span className="text-[9px] sm:text-xs text-muted-foreground retro">
+              <span className="text-muted-foreground retro text-[9px] sm:text-xs">
                 {stats.mana.current}/{stats.mana.max}
               </span>
             </div>
@@ -138,9 +126,9 @@ export default function PlayerProfileCard({
         {/* Experience Bar */}
         {showExperience && stats?.experience && (
           <div className="space-y-1">
-            <div className="flex justify-between items-center">
+            <div className="flex items-center justify-between">
               <span className="text-sm font-medium">Experience</span>
-              <span className="text-[9px] sm:text-xs text-muted-foreground retro">
+              <span className="text-muted-foreground retro text-[9px] sm:text-xs">
                 {stats.experience.current}/{stats.experience.max} XP
               </span>
             </div>
@@ -157,31 +145,29 @@ export default function PlayerProfileCard({
         {customStats.length > 0 && (
           <div className="space-y-2">
             {customStats.map((stat, index) => {
-              const percentage = stat.max
-                ? Math.round((stat.value / stat.max) * 100)
-                : 0
+              const percentage = stat.max ? Math.round((stat.value / stat.max) * 100) : 0;
 
               return (
                 <div key={index} className="space-y-1">
-                  <div className="flex justify-between items-center">
+                  <div className="flex items-center justify-between">
                     <span className="text-sm font-medium">{stat.label}</span>
-                    <span className="text-[9px] sm:text-xs text-muted-foreground retro">
+                    <span className="text-muted-foreground retro text-[9px] sm:text-xs">
                       {stat.value}
-                      {stat.max ? `/${stat.max}` : ''}
+                      {stat.max ? `/${stat.max}` : ""}
                     </span>
                   </div>
                   <Progress
                     value={percentage}
-                    variant={stat.variant || 'retro'}
-                    progressBg={stat.color || 'bg-primary'}
+                    variant={stat.variant || "retro"}
+                    progressBg={stat.color || "bg-primary"}
                     className="h-3"
                   />
                 </div>
-              )
+              );
             })}
           </div>
         )}
       </CardContent>
     </Card>
-  )
+  );
 }

@@ -1,12 +1,10 @@
 export const Footer = () => {
   return (
-    <footer className="text-center py-8">
-      <p className="text-xs text-muted-foreground retro">
-        PLAY GAMES · HEAL KIDS · CHANGE LIVES
-      </p>
-      <p className="text-[10px] text-muted-foreground/60 mt-2">
+    <footer className="py-8 text-center">
+      <p className="text-muted-foreground retro text-xs">PLAY GAMES · HEAL KIDS · CHANGE LIVES</p>
+      <p className="text-muted-foreground/60 mt-2 text-[10px]">
         &copy; {new Date().getFullYear()} Heroes Play Games · Extra Life
       </p>
     </footer>
-  )
-}
+  );
+};

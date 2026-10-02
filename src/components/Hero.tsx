@@ -1,14 +1,15 @@
-import { Badge } from './ui/8bit/badge'
-import { Button } from './ui/8bit/button'
-import { Card, CardContent } from './ui/8bit/card'
-import type { Team } from 'extra-life-ts'
+import type { Team } from "extra-life-ts";
+
+import { Badge } from "./ui/8bit/badge";
+import { Button } from "./ui/8bit/button";
+import { Card, CardContent } from "./ui/8bit/card";
 
 interface Props {
-  team: Team
+  team: Team;
 }
 
 export const Hero = ({ team }: Props) => {
-  const currentYear = new Date().getFullYear()
+  const currentYear = new Date().getFullYear();
 
   return (
     <section className="mb-12">
@@ -19,24 +20,20 @@ export const Hero = ({ team }: Props) => {
             <img
               src="/logo.png"
               alt="Heroes Play Games"
-              className="w-full max-w-md pixelated drop-shadow-lg"
+              className="pixelated w-full max-w-md drop-shadow-lg"
             />
-            <div className="text-center space-y-4">
+            <div className="space-y-4 text-center">
               <Badge variant="default" className="text-xs sm:text-sm">
                 EXTRA LIFE {currentYear}
               </Badge>
-              <p className="text-base sm:text-lg text-muted-foreground max-w-2xl">
-                A fundraising team playing games to heal kids through
-                Children&apos;s Miracle Network Hospitals
+              <p className="text-muted-foreground max-w-2xl text-base sm:text-lg">
+                A fundraising team playing games to heal kids through Children&apos;s Miracle
+                Network Hospitals
               </p>
             </div>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col gap-4 sm:flex-row">
               <Button size="lg" asChild>
-                <a
-                  href={team.links.page}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <a href={team.links.page} target="_blank" rel="noopener noreferrer">
                   JOIN TEAM
                 </a>
               </Button>
@@ -48,5 +45,5 @@ export const Hero = ({ team }: Props) => {
         </CardContent>
       </Card>
     </section>
-  )
-}
+  );
+};
