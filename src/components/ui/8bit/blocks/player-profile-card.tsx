@@ -78,9 +78,9 @@ export default function PlayerProfileCard({
     : 0
 
   return (
-    <Card className={cn('w-full max-w-md', className)} {...props}>
+    <Card className={cn('w-full', className)} {...props}>
       <CardHeader className="pb-4">
-        <div className="flex items-center gap-4">
+        <div className="flex min-w-0 items-center gap-4">
           <Avatar className="size-16" variant="pixel" font="retro">
             <AvatarImage src={avatarSrc} alt={playerName} />
             <AvatarFallback className="text-lg">
@@ -90,20 +90,14 @@ export default function PlayerProfileCard({
 
           <div className="flex-1 min-w-0">
             <div className="space-y-2">
-              <div className="flex flex-col gap-1 md:flex-row md:items-center md:gap-2 justify-between">
-                <h3 className="font-bold truncate md:text-lg">{playerName}</h3>
-                {showLevel && (
-                  <span>
-                    <Badge className="text-xs">Lv.{level}</Badge>
-                  </span>
-                )}
-              </div>
-              <div className="flex flex-wrap gap-1">
+              <h3 className="font-bold truncate md:text-lg">{playerName}</h3>
+              <div className="flex items-center justify-between gap-2">
                 {playerClass && (
                   <span className="text-xs text-muted-foreground">
                     {playerClass}
                   </span>
                 )}
+                {showLevel && <Badge className="h-4 text-[10px]">Lv.{level}</Badge>}
               </div>
             </div>
           </div>

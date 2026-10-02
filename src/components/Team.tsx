@@ -55,7 +55,7 @@ export const Team = ({ members }: TeamProps) => {
         </CardContent>
       </Card>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mt-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-6 mt-10">
         {organizedMembers.map((member) => (
           <a
             key={member.participantID}
