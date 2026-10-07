@@ -226,7 +226,7 @@ export function createBrickPattern404(): BrickState[] {
 
   for (const [glyphIndex, glyph] of GLYPH_404.entries()) {
     for (const [rowIndex, row] of glyph.entries()) {
-      for (const [columnIndex, cell] of [...row].entries()) {
+      for (const [columnIndex, cell] of row.split("").entries()) {
         if (cell !== "#") {
           continue;
         }

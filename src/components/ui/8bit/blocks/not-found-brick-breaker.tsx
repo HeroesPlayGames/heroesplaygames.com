@@ -506,6 +506,9 @@ export function NotFoundBrickBreaker({
       attributes: true,
     });
 
+    const capturedPointerId = activePointerRef.current;
+    const capturedPlayfield = playfieldRef.current;
+
     return () => {
       mountedRef.current = false;
       cancelLoop();
@@ -514,10 +517,8 @@ export function NotFoundBrickBreaker({
       document.removeEventListener("visibilitychange", handleVisibilityChange);
       themeObserver?.disconnect();
 
-      const pointerId = activePointerRef.current;
-      const playfield = playfieldRef.current;
-      if (pointerId !== null && playfield?.hasPointerCapture?.(pointerId)) {
-        playfield.releasePointerCapture(pointerId);
+      if (capturedPointerId !== null && capturedPlayfield?.hasPointerCapture?.(capturedPointerId)) {
+        capturedPlayfield.releasePointerCapture(capturedPointerId);
       }
       activePointerRef.current = null;
     };
