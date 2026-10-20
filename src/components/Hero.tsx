@@ -8,9 +8,9 @@ interface Props {
   team: Team;
 }
 
-export const Hero = ({ team }: Props) => {
-  const currentYear = new Date().getFullYear();
+const currentYear = new Date().getFullYear();
 
+export const Hero = ({ team }: Props) => {
   return (
     <section className="mb-12">
       <Card className="relative overflow-hidden" font="retro">

@@ -3,5 +3,27 @@
   "name": "heroesplaygames",
   "compatibility_date": "2026-09-02",
   "compatibility_flags": ["nodejs_compat"],
-  "main": "@tanstack/react-start/server-entry",
+  "main": "src/server.ts",
+  "observability": {
+    "enabled": true,
+  },
+  "vars": {
+    "EXTRA_LIFE_TEAM_ID": "73401",
+  },
+  "workflows": [
+    {
+      "name": "donation-sync",
+      "binding": "DONATION_SYNC",
+      "class_name": "DonationSyncWorkflow",
+      "schedules": ["*/5 * * * *"],
+    },
+  ],
+  "d1_databases": [
+    {
+      "binding": "DONATIONS_DB",
+      "database_name": "heroesplaygames-donations",
+      "database_id": "454e434e-4d29-4e82-ade7-535cebf79a72",
+      "migrations_dir": "migrations",
+    },
+  ],
 }

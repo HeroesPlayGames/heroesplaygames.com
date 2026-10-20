@@ -6,6 +6,8 @@ import { currencyFormat } from "@/lib/currency";
 
 import SaveSlots from "./ui/8bit/blocks/save-slots";
 
+const currentYear = new Date().getFullYear();
+
 const previousYears = {
   "2021": {
     sumDonations: 5431,
@@ -39,8 +41,6 @@ interface StatBarProps {
 }
 
 export const StatBar = ({ team }: StatBarProps) => {
-  const currentYear = new Date().getFullYear();
-
   return (
     <>
       <section className="mb-12">
