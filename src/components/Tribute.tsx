@@ -57,13 +57,22 @@ export const Tribute = ({ member }: TributeProps) => {
               />
             </div>
 
-            <div className="flex flex-col gap-4 sm:flex-row">
-              <Button size="lg" asChild>
+            <div className="flex w-full max-w-md flex-col items-stretch gap-5 sm:gap-4">
+              <Button
+                size="lg"
+                asChild
+                className="h-auto min-h-10 w-full px-2 py-3 text-center text-[10px] leading-relaxed whitespace-normal sm:text-xs"
+              >
                 <a href={member.links.donate} target="_blank" rel="noopener noreferrer">
                   DONATE IN {firstName.toUpperCase()}&apos;S NAME
                 </a>
               </Button>
-              <Button size="lg" variant="outline" asChild>
+              <Button
+                size="lg"
+                variant="outline"
+                asChild
+                className="h-auto min-h-10 w-full px-2 py-3 text-center text-[10px] leading-relaxed whitespace-normal sm:text-xs"
+              >
                 <a href={member.links.page} target="_blank" rel="noopener noreferrer">
                   VISIT {firstName.toUpperCase()}&apos;S PAGE
                 </a>
