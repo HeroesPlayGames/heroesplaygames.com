@@ -8,6 +8,12 @@ import { Team } from "@/components/Team";
 
 import { getTeamData, getTopDonations } from "../api";
 
+import appCss from "../styles.css?url";
+import inter400 from "@fontsource/inter/400.css?url";
+import inter600 from "@fontsource/inter/600.css?url";
+import inter700 from "@fontsource/inter/700.css?url";
+import nunito900 from "@fontsource/nunito-sans/900.css?url";
+
 export const Route = createFileRoute("/")({
   component: Home,
   loader: async () => {
@@ -67,6 +73,16 @@ export const Route = createFileRoute("/")({
           "We're on a mission to play games to help change kids' health. We've each chosen our local Children's Miracle Network Hospital.",
       },
       { property: "twitter:image", content: "/logo.png" },
+    ],
+    links: [
+      {
+        rel: "stylesheet",
+        href: appCss,
+      },
+      { rel: "stylesheet", href: inter400 },
+      { rel: "stylesheet", href: inter600 },
+      { rel: "stylesheet", href: inter700 },
+      { rel: "stylesheet", href: nunito900 },
     ],
   }),
 });

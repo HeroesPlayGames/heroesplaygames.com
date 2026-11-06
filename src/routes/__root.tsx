@@ -5,12 +5,6 @@ import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 
 import TanStackQueryDevtools from "../integrations/tanstack-query/devtools";
 
-import appCss from "../styles.css?url";
-import "@fontsource/inter/400.css";
-import "@fontsource/inter/600.css";
-import "@fontsource/inter/700.css";
-import "@fontsource/nunito-sans/900.css";
-
 interface MyRouterContext {
   queryClient: QueryClient;
 }
@@ -27,12 +21,6 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
       },
       {
         title: "Heroes Play Games",
-      },
-    ],
-    links: [
-      {
-        rel: "stylesheet",
-        href: appCss,
       },
     ],
   }),

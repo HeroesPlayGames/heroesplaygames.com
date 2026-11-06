@@ -15,9 +15,5 @@ export const Route = createFileRoute("/scenes/text")({
 function TextScene() {
   const { text } = Route.useSearch();
 
-  return (
-    <div className="min-h-screen bg-[#030933]">
-      <FitText text={text ?? ""} />
-    </div>
-  );
+  return <FitText text={text ?? ""} />;
 }

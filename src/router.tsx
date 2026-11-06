@@ -1,10 +1,15 @@
-import { createRouter } from "@tanstack/react-router";
+import { lazyRouteComponent, createRouter } from "@tanstack/react-router";
 import { setupRouterSsrQueryIntegration } from "@tanstack/react-router-ssr-query";
 
-import { NotFoundBrickBreaker } from "./components/ui/8bit/blocks/not-found-brick-breaker";
 import * as TanstackQuery from "./integrations/tanstack-query/root-provider";
 // Import the generated route tree
 import { routeTree } from "./routeTree.gen";
+
+// Lazy so the 8-bit styles (retro.css) only load when a 404 actually renders.
+const NotFoundBrickBreaker = lazyRouteComponent(
+  () => import("./components/ui/8bit/blocks/not-found-brick-breaker"),
+  "NotFoundBrickBreaker",
+);
 
 // Create a new router instance
 export const getRouter = () => {

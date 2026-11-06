@@ -13,7 +13,7 @@ const query = queryOptions({
 export const Route = createFileRoute("/scenes/latest-donation")({
   component: LatestDonationScene,
   loader: async ({ context: { queryClient } }) => {
-    return await queryClient.ensureQueryData(query);
+    return await queryClient.query(query);
   },
 });
 
@@ -22,9 +22,5 @@ function LatestDonationScene() {
 
   if (!data.amount) return null;
 
-  return (
-    <div className="min-h-screen bg-[#030933]">
-      <FitText text={`${data.displayName ?? "Anonymous"}-$${data.amount}`} />
-    </div>
-  );
+  return <FitText text={`${data.displayName ?? "Anonymous"}-$${data.amount}`} />;
 }

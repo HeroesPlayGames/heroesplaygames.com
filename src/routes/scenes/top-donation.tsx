@@ -22,9 +22,5 @@ function TopDonationScene() {
 
   if (!data.amount) return null;
 
-  return (
-    <div className="min-h-screen bg-[#030933]">
-      <FitText text={`${data.displayName ?? "Anonymous"}-$${data.amount}`} />
-    </div>
-  );
+  return <FitText text={`${data.displayName ?? "Anonymous"}-$${data.amount}`} />;
 }

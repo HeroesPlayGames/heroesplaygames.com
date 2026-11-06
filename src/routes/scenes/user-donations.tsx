@@ -22,7 +22,7 @@ export const Route = createFileRoute("/scenes/user-donations")({
   component: UserDonationsScene,
   validateSearch: searchSchema,
   loader: async ({ context: { queryClient } }) => {
-    return await queryClient.ensureQueryData(query);
+    return await queryClient.query(query);
   },
 });
 
@@ -39,12 +39,10 @@ function UserDonationsScene() {
   }
 
   return (
-    <div className="min-h-screen bg-[#030933]">
-      <FitText
-        text={`${member.displayName.split(" ")[0]} - ${currencyFormat(member.sumDonations)} ${
-          showGoal ? `/ ${currencyFormat(member.fundraisingGoal)}` : ""
-        }`}
-      />
-    </div>
+    <FitText
+      text={`${member.displayName.split(" ")[0]} - ${currencyFormat(member.sumDonations)} ${
+        showGoal ? `/ ${currencyFormat(member.fundraisingGoal)}` : ""
+      }`}
+    />
   );
 }
