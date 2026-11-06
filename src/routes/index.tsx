@@ -5,6 +5,7 @@ import { Hero } from "@/components/Hero";
 import { Leaderboard } from "@/components/Leaderboard";
 import { StatBar } from "@/components/StatBar";
 import { Team } from "@/components/Team";
+import { Tribute } from "@/components/Tribute";
 
 import { getTeamData, getTopDonations } from "../api";
 
@@ -88,11 +89,12 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
-  const { team, members, topDonations } = Route.useLoaderData();
+  const { team, members, tributeMember, topDonations } = Route.useLoaderData();
 
   return (
     <div className="bg-background min-h-screen">
       <div className="container mx-auto px-4 py-8 font-sans">
+        {tributeMember && <Tribute member={tributeMember} />}
         <Hero team={team} />
         <StatBar team={team} />
         <Team members={members} />

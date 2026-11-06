@@ -1,5 +1,7 @@
 import type { TeamParticipant } from "extra-life-ts";
 
+import { TRIBUTE_PARTICIPANT_ID } from "./constants";
+
 type Iteratee<T> = ((item: T) => unknown) | keyof T;
 
 export const sortBy = <T>(array: Array<T>, iteratees: Array<Iteratee<T>>): Array<T> => {
@@ -27,6 +29,8 @@ export const sortBy = <T>(array: Array<T>, iteratees: Array<Iteratee<T>>): Array
 
 export const organizeMembers = (members: Array<TeamParticipant>) => {
   return sortBy(members, [
+    // Honored teammate first, always
+    (m: TeamParticipant) => (m.participantID === TRIBUTE_PARTICIPANT_ID ? -1 : 1),
     // Captains first
     (m: TeamParticipant) => (m.isTeamCaptain ? -1 : 1),
     // Then sort by CoCaptains

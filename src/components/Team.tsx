@@ -1,8 +1,11 @@
 import type { TeamParticipant } from "extra-life-ts";
 import { useState } from "react";
 
+import { Badge } from "@/components/ui/8bit/badge";
 import PlayerProfileCard from "@/components/ui/8bit/blocks/player-profile-card";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/8bit/card";
+import { TRIBUTE_PARTICIPANT_ID } from "@/lib/constants";
+import { currencyFormat } from "@/lib/currency";
 import { organizeMembers } from "@/lib/helpers";
 
 const playerNumberOfYears: Record<number, number> = {
@@ -60,33 +63,53 @@ export const Team = ({ members }: TeamProps) => {
       </Card>
 
       <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 2xl:grid-cols-3">
-        {organizedMembers.map((member) => (
-          <a
-            key={member.participantID}
-            href={member.links.donate}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block transition-transform hover:scale-105"
-          >
-            <PlayerProfileCard
-              playerName={member.displayName}
-              avatarSrc={member.avatarImageURL}
-              avatarFallback={member.displayName}
-              level={playerNumberOfYears[member.participantID] || 1}
-              customStats={[
-                {
-                  label: "Fundraising",
-                  value: member.sumDonations,
-                  max: member.fundraisingGoal,
-                  color: "bg-green-500",
-                },
-              ]}
-              playerClass={
-                member.isTeamCaptain ? "CAPTAIN" : member.isTeamCoCaptain ? "CO-CAPTAIN" : "HERO"
-              }
-            />
-          </a>
-        ))}
+        {organizedMembers.map((member) => {
+          const isTribute = member.participantID === TRIBUTE_PARTICIPANT_ID;
+
+          return (
+            <a
+              key={member.participantID}
+              href={member.links.donate}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block transition-transform hover:scale-105"
+            >
+              <div
+                className={isTribute ? "relative rounded-none ring-4 ring-amber-400" : "relative"}
+              >
+                {isTribute && (
+                  <div className="absolute -top-3 left-1/2 z-10 -translate-x-1/2">
+                    <Badge variant="secondary" className="text-[10px whitespace-nowrap">
+                      IN MEMORY · FOREVER A HERO
+                    </Badge>
+                  </div>
+                )}
+                <PlayerProfileCard
+                  playerName={member.displayName}
+                  avatarSrc={member.avatarImageURL}
+                  avatarFallback={member.displayName}
+                  level={playerNumberOfYears[member.participantID] || 1}
+                  customStats={[
+                    {
+                      label: "Fundraising",
+                      value: member.sumDonations,
+                      max: member.fundraisingGoal,
+                      color: isTribute ? "bg-amber-400" : "bg-green-500",
+                      formatValue: currencyFormat,
+                    },
+                  ]}
+                  playerClass={
+                    member.isTeamCaptain
+                      ? "CAPTAIN"
+                      : member.isTeamCoCaptain
+                        ? "CO-CAPTAIN"
+                        : "HERO"
+                  }
+                />
+              </div>
+            </a>
+          );
+        })}
       </div>
     </section>
   );

@@ -43,6 +43,7 @@ export interface PlayerProfileCardProps {
     max?: number;
     color?: string;
     variant?: "retro" | "default";
+    formatValue?: (value: number) => string;
   }>;
 }
 
@@ -152,12 +153,14 @@ export default function PlayerProfileCard({
                   <div className="flex items-center justify-between">
                     <span className="text-sm font-medium">{stat.label}</span>
                     <span className="text-muted-foreground retro text-[9px] sm:text-xs">
-                      {stat.value}
-                      {stat.max ? `/${stat.max}` : ""}
+                      {stat.formatValue ? stat.formatValue(stat.value) : stat.value}
+                      {stat.max
+                        ? `/${stat.formatValue ? stat.formatValue(stat.max) : stat.max}`
+                        : ""}
                     </span>
                   </div>
                   <Progress
-                    value={percentage}
+                    value={Math.min(percentage, 100)}
                     variant={stat.variant || "retro"}
                     progressBg={stat.color || "bg-primary"}
                     className="h-3"
