@@ -13,7 +13,7 @@ const query = queryOptions({
 export const Route = createFileRoute("/scenes/top-donation")({
   component: TopDonationScene,
   loader: async ({ context: { queryClient } }) => {
-    return await queryClient.ensureQueryData(query);
+    return await queryClient.query({ ...query, staleTime: "static" });
   },
 });
 
