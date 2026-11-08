@@ -82,7 +82,7 @@ export const Team = ({ members }: TeamProps) => {
               >
                 {isTribute && (
                   <div className="absolute -top-3 left-1/2 z-10 -translate-x-1/2">
-                    <Badge variant="secondary" className="text-[10px whitespace-nowrap">
+                    <Badge variant="secondary" className="text-[10px] whitespace-nowrap">
                       IN MEMORY · FOREVER A HERO
                     </Badge>
                   </div>

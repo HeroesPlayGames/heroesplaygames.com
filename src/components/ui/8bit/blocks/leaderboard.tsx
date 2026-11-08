@@ -138,7 +138,7 @@ export function Leaderboard({
                   key={player.id}
                   className={cn(playerItemVariants({ rank: rankVariant }), "retro")}
                 >
-                  <div className="flex items-center gap-3">
+                  <div className="flex min-w-0 flex-1 items-center gap-3 overflow-hidden">
                     {showAvatar && (
                       <Avatar variant="pixel" font="retro" className="size-10">
                         {player.avatar && <AvatarImage src={player.avatar} alt={player.name} />}
@@ -155,10 +155,10 @@ export function Leaderboard({
                     )}
 
                     <div className="min-w-0 flex-1">
-                      <div className="flex items-center gap-4">
+                      <div className="flex min-w-0 items-center gap-4">
                         <span
                           className={cn(
-                            "font-medium truncate retro text-xs md:text-sm",
+                            "min-w-0 font-medium truncate retro text-xs md:text-sm",
                             player.isCurrentPlayer && "text-primary font-bold",
                           )}
                         >
@@ -169,7 +169,7 @@ export function Leaderboard({
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-2">
+                  <div className="flex shrink-0 items-center gap-2">
                     <span
                       className={cn(
                         "font-bold retro text-xs md:text-sm",

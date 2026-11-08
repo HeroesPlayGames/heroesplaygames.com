@@ -92,7 +92,7 @@ function Home() {
   const { team, members, tributeMember, topDonations } = Route.useLoaderData();
 
   return (
-    <div className="bg-background min-h-screen">
+    <div className="bg-background min-h-screen overflow-x-clip">
       <div className="container mx-auto px-4 py-8 font-sans">
         {tributeMember && <Tribute member={tributeMember} />}
         <Hero team={team} />
