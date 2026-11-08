@@ -11,6 +11,9 @@ import { organizeMembers } from "@/lib/helpers";
 const playerNumberOfYears: Record<number, number> = {
   566046: 11,
   566076: 8,
+  568704: 11,
+  580840: 5,
+  581411: 2,
 };
 
 interface TeamProps {
